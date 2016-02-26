@@ -7,9 +7,11 @@
     <string name="breakfastMenu">BREAKFAST</string>
     <string name="medicineMenu">MEDICINE</string>
     <string name="taskInstructionText">Click a button to add the task</string>
+    <string name="startMenuButton">To Patient Menu</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_start">StartActivity</string>
 
 
 </resources>

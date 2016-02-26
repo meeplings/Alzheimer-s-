@@ -9,16 +9,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.asamoahfamily.alzheimers.OpenActivity"
-    tools:showIn="@layout/activity_open"
-    android:id="@+id/taskLayout">
+    tools:context=".TaskActivity"
+    tools:showIn="@layout/activity_task"
+    android:id="@+id/taskLayout"
+    android:background="#ed653c">
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height = "240dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:id="@+id/tableLayout">
 
         <TableRow
             android:layout_width="match_parent"
@@ -32,17 +34,19 @@
                 android:text="@string/defaultGridText"
                 android:id="@+id/textView"
                 android:layout_column="26"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:onClick="addTaskMenu" />
         </TableRow>
 
     </TableLayout>
 
-    <fragment
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:name="layout.TasksMenu"
-        android:id="@+id/fragment2"
-        tools:layout="@layout/tasks_menu" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="54dp"
+        android:layout_below="@+id/tableLayout"
+        android:id="@+id/addTask"></RelativeLayout>
 
 </RelativeLayout>

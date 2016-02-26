@@ -1,19 +1,15 @@
 package com.example.asamoahfamily.alzheimers;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class TasksMenu extends Fragment {
 
@@ -23,16 +19,10 @@ public class TasksMenu extends Fragment {
     private static final int BUTTON_LENGTH = 250;
     private static final int BUTTON_HEIGHT = 150;
     private int fragIDCounter;
-    private List<Button> taskList;
     private RelativeLayout fl;
     private RelativeLayout rl;
-    private RelativeLayout.LayoutParams fragLP;
     private float xOffset;
     private float yOffset;
-    public OpenActivity o;
-
-
-    //Screen Density -- getWindowManager().getDefaultDisplay().getMetrics(dm);
 
     private static final String TAG = "asamoahDebug";
 
@@ -54,35 +44,27 @@ public class TasksMenu extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View v = inflater.inflate(R.layout.tasks_menu, container, false);
         idCounter = 0;
         fragIDCounter = 100;
-        taskList = new ArrayList<>();
         resetOffset();
-        fl = (RelativeLayout) v.findViewById(R.id.tasksMenu);
-        fragLP = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
-        return v;
+        fl = (RelativeLayout) container;
+        return inflater.inflate(R.layout.fragment_tasks_menu, container, false);
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         rl = (RelativeLayout) getActivity().findViewById(R.id.taskLayout);
-        taskList = defaultButtonOptions();
-        for(int i = 0; i < taskList.size(); i++){
-            taskList.get(i).setX(xOffset);
-            taskList.get(i).setY(yOffset);
-            buttonOffset();
-            fl.addView(taskList.get(i), fragLP);
-        }
+        fl.addView(addButtons("BREAKFAST"));
+        buttonOffset();
+        fl.addView(addButtons("LUNCH"));
+        buttonOffset();
+        fl.addView(addButtons("DINNER"));
+        buttonOffset();
         resetOffset();
     }
 
@@ -92,64 +74,17 @@ public class TasksMenu extends Fragment {
     }
 
     private Button addButtons(String t){
-
-        Button fb = new Button(this.getContext());
-        final int currentFragID = fragIDCounter; fragIDCounter++;
-        fb.setText(t);
-        fb.setId(currentFragID);
-        fb.setOnClickListener(
-                new Button.OnClickListener() {
-                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT
-                    );
-
-                    public void onClick(View v) {
-                        Button pb = new Button(getContext());
-                        pb.setText(((Button) v).getText());
-                        pb.setWidth(100);
-                        pb.setHeight(100);
-                        final int currentId = idCounter;
-                        pb.setId(currentId);
-                        idCounter++;
-                        pb.setBackgroundColor(0x548314);
-                        pb.setLayoutParams(lp);
-                        rl.addView(pb);
-                        buttonOffset();
-                        Log.d(TAG, Integer.toString(pb.getId()));
-                    }
-                }
-
-        );
-        resetOffset();
-        return fb;
-
-    }
-    private List<Button> defaultButtonOptions(){
-        taskList.add(addButtons("Breakfast"));
-        taskList.add(addButtons("Lunch"));
-        taskList.add(addButtons("Dinner"));
-        taskList.add(addButtons("Medicine"));
-        taskList.add(addButtons("PhysicalActivity"));
-        return sortButtons();
-    }
-
-    public List<Button> sortButtons(){
-        String[] sortCharacters = new String[taskList.size()];
-        List<Button> sortedButtons = new ArrayList<>();
-        for(int i = 0; i < taskList.size(); i++){
-            sortCharacters[i] = taskList.get(i).toString();
-        }
-        Arrays.sort(sortCharacters);
-        for(int i = 0; i < taskList.size(); i++){
-            Button b = new Button(getContext());
-            for(int j = 0; j < taskList.size(); j++){
-                if(sortCharacters[j].equals(taskList.get(i).getText().toString()))
-                    b = taskList.get(i);
-            }
-            sortedButtons.add(b);
-        }
-        return sortedButtons;
+        Button fragBut = new Button(getContext());
+        fragBut.setX(xOffset);
+        fragBut.setY(yOffset);
+        fragBut.setText(t);
+        final int currentFragID = fragIDCounter;
+        fragIDCounter++;
+        fragBut.setId(currentFragID);
+        fragBut.setWidth(BUTTON_LENGTH);
+        fragBut.setHeight(BUTTON_HEIGHT);
+        fragBut.setBackgroundColor(Color.BLUE);
+        return fragBut;
     }
 
     private void buttonOffset(){
@@ -165,7 +100,7 @@ public class TasksMenu extends Fragment {
     }
 
     public interface OnFragmentInteractionListener{
-         public void OnFragmentInteraction(Uri uri);
+          void OnFragmentInteraction(Uri uri);
     }
 
 }
