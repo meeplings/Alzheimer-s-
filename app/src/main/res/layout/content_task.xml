@@ -12,41 +12,72 @@
     tools:context=".TaskActivity"
     tools:showIn="@layout/activity_task"
     android:id="@+id/taskLayout"
-    android:background="#ed653c">
+    android:background="@color/slateGrey">
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height = "240dp"
+        android:layout_height="220dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/tableLayout">
+        android:background="#5FD4B1"
+        android:id="@+id/menuTable">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menuRow1"
+            android:background="@color/greenLight">
+
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical|center_horizontal">
+            android:id="@+id/menuRow2"
+            android:background="@color/greenLight">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/defaultGridText"
-                android:id="@+id/textView"
-                android:layout_column="26"
-                android:layout_gravity="center"
-                android:onClick="addTaskMenu" />
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/menuRow3"
+            android:background="@color/greenLight">
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/menuRow4"
+            android:background="@color/greenLight">
+
+        </TableRow>
     </TableLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/defaultGridText"
+        android:id="@+id/textView"
+        android:layout_gravity="center"
+        android:onClick="addTaskMenu"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/addTask"
+        android:textStyle="bold"
+        android:textColor="@color/purpleLight"
+        android:background="#545a09" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="220dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp"
-        android:layout_below="@+id/tableLayout"
-        android:id="@+id/addTask"></RelativeLayout>
+        android:layout_marginBottom="0dp"
+        android:id="@+id/addTask"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_centerHorizontal="true">
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class Food extends Tasks{
+public class Food extends Tasks{
 	
 	protected Food(int prio, String na, boolean al, Color col, 
 			boolean e, ArrayList<String> foods, int aTime){

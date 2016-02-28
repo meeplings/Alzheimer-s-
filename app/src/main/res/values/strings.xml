@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Alzheimers</string>
     <string name="action_settings">Settings</string>
-    <string name="defaultGridText">No Tasks!</string>
-    <string name="addTaskButton">Click here to edit task list</string>
+    <string name="defaultGridText">Click Me to Add A Button To The Menu</string>
+    <string name="addTaskButton">Click Here To Edit Task List</string>
     <string name="title_activity_add_task">addTaskActivity</string>
     <string name="breakfastMenu">BREAKFAST</string>
     <string name="medicineMenu">MEDICINE</string>
-    <string name="taskInstructionText">Click a button to add the task</string>
-    <string name="startMenuButton">To Patient Menu</string>
+    <string name="taskInstructionText">Click One Of the Above Buttons To Setup The Main Menu</string>
+    <string name="startMenuButton">Click Me To Go To The Patient Task Manager</string>
+    <string name="Creators">Created By: Jeffrey Asamoah, Noah Koster,\t Jared Okun, Adam Schoenfeld</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

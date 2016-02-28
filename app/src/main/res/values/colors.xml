@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO: change lilac color so its a bit darker-->
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="greenMid">#31FFA2</color>
+    <color name="slateGrey">#2F4F4F</color>
+    <color name="greenLight">#8EFFCC</color>
+    <color name="greenDark">#10A626</color>
+    <color name="purpleLight">#C398FF</color>
+    <color name="purpleDark">#5216A6</color>
+    <color name="yellowLight">#FFF48E</color>
+    <color name="yellowDark">#A69710</color>
+    <color name="orangeLight">#FFAC8E</color>
+    <color name="orangeDark">#A63910</color>
+
 </resources>
