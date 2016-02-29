@@ -4,15 +4,21 @@
     <string name="defaultGridText">Click Me to Add A Button To The Menu</string>
     <string name="addTaskButton">Click Here To Edit Task List</string>
     <string name="title_activity_add_task">addTaskActivity</string>
-    <string name="breakfastMenu">BREAKFAST</string>
-    <string name="medicineMenu">MEDICINE</string>
+    <string name="breakfast">BREAKFAST</string>
+    <string name="lunch">LUNCH</string>
+    <string name="dinner">DINNER</string>
+    <string name="medicine">MEDICINE</string>
     <string name="taskInstructionText">Click One Of the Above Buttons To Setup The Main Menu</string>
     <string name="startMenuButton">Click Me To Go To The Patient Task Manager</string>
-    <string name="Creators">Created By: Jeffrey Asamoah, Noah Koster,\t Jared Okun, Adam Schoenfeld</string>
+    <string name="Creators">Created By: Jeffrey Asamoah, Noah Koster, Jared Okun, Adam Schoenfeld</string>
+    <string name="DoneBox">Mark As Done</string>
+    <string name="PendingBox">Mark as Pending</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_start">StartActivity</string>
+    <string name="TaskDesc">View Task Details...</string>
+    <string name="RemoveBox">RemoceThisButton...</string>
 
 
 </resources>

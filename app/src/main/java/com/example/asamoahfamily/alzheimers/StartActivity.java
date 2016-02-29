@@ -18,7 +18,7 @@ public class StartActivity extends AppCompatActivity {
 
 
     public void onClick(View v){
-        Intent i = new Intent(this,TaskActivity.class);
+        Intent i = new Intent(this,TaskManagerActivity.class);
         startActivity(i);
         finish();
     }

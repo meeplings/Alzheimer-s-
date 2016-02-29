@@ -1,20 +1,24 @@
 package com.example.asamoahfamily.alzheimers;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TableRow;
 
-public class TasksMenu extends Fragment implements GlobalVariables{
+public class TasksMenuFragment extends Fragment implements GlobalVariables{
 
     private int idCounter;
-    int buffer;private int fragIDCounter;
+    private OnFragmentInteractionListener mFragListener;
+    private int buffer;
+    private ScrollView scroller;
+    private int fragIDCounter;
     private TableRow[] menuRows;
     private TableRow[] fragRows;
     private TableRow.LayoutParams lp;
@@ -24,19 +28,36 @@ public class TasksMenu extends Fragment implements GlobalVariables{
     float screenScale;
 
 
-    public TasksMenu() {
+    public TasksMenuFragment() {
     }
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mFragListener = (OnFragmentInteractionListener) getContext();
     }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if(savedInstanceState!=null){
+            //TODO: Figure out how to store stuffs
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //TODO: Figure out how to store stuffs
+
     }
 
     @Override
@@ -50,6 +71,7 @@ public class TasksMenu extends Fragment implements GlobalVariables{
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
         );
         lp.setMargins(buffer,buffer,buffer,buffer);
+        scroller = (ScrollView) getActivity().findViewById(R.id.scrollView);
         menuRows = new TableRow[4];
         fragRows = new TableRow[4];
 
@@ -73,11 +95,15 @@ public class TasksMenu extends Fragment implements GlobalVariables{
             fragRows[i].setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
             fragRows[i].setVerticalGravity(Gravity.CENTER_VERTICAL);
         }
-
         addToFragment("FOOD");
+        addToFragment("PHYSICAL ACTIVITY");
         addToFragment("MEDICINE");
-        addToFragment("Memmory Game");
-        addToFragment("Physical Activity");
+        addToFragment("MEMORY ACTIVITY ");
+        addToFragment("OTHER");
+        addToMenu("BREAKFAST");
+        addToMenu("LUNCH");
+        addToMenu("DINNER");
+        addToMenu("VITAMINS");
     }
 
 
@@ -86,50 +112,6 @@ public class TasksMenu extends Fragment implements GlobalVariables{
         super.onDetach();
     }
 
-    private Button newButton(final String t){
-        final Button fragBut = new Button(getContext());
-        fragBut.setText(t);
-        fragBut.setMaxWidth((int) (50*screenScale));
-        fragBut.setGravity(View.FOCUS_LEFT);
-        fragBut.setLayoutParams(lp);
-        fragBut.setPadding(buffer, buffer, buffer, buffer);
-        fragBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Button menuBut = new Button(getContext());
-                menuBut.setGravity(View.FOCUS_LEFT);
-                menuBut.setMaxWidth((int) (50*screenScale));
-                menuBut.setLayoutParams(lp);
-                menuBut.setPadding(buffer,buffer,buffer,buffer);
-                final int currentID = idCounter;
-                idCounter++;
-                if((xMenuCo+yMenuCo)%2 == 0) {
-                    menuBut.setBackgroundResource(R.color.purpleDark);
-                    menuBut.setTextColor(getResources().getColor(R.color.greenDark));
-                }
-                if((xMenuCo+yMenuCo)%2 == 1) {
-                    menuBut.setBackgroundResource(R.color.purpleLight);
-                    menuBut.setTextColor(getResources().getColor(R.color.greenMid));
-                }
-                menuBut.setId(currentID);
-                menuBut.setText(t);
-                menuRows[yMenuCo].addView(menuBut, xMenuCo);
-                incrementMenuGrid();
-            }
-        });
-        final int currentFragID = fragIDCounter;    fragIDCounter++;
-        fragBut.setId(currentFragID);
-        if(currentFragID%2 == 0) {
-            fragBut.setBackgroundResource(R.color.yellowDark);
-            fragBut.setTextColor(getResources().getColor(R.color.purpleLight));
-        }
-        if(currentFragID%2 == 1) {
-            fragBut.setBackgroundResource(R.color.yellowLight);
-            fragBut.setTextColor(getResources().getColor(R.color.purpleDark));
-
-        }
-        return fragBut;
-    }
     private void incrementMenuGrid(){
         xMenuCo++;
         if(xMenuCo >= 3){
@@ -146,11 +128,70 @@ public class TasksMenu extends Fragment implements GlobalVariables{
     }
 
     public interface OnFragmentInteractionListener{
-          void OnFragmentInteraction(Uri uri);
+          void OnFragmentInteraction(View v);
     }
-    private void addToFragment(String s){
-        fragRows[yFragCo].addView(newButton(s),xFragCo);
+
+    private void addToFragment(final String t){
+        final Button fragBut = new Button(getContext());
+        fragBut.setText(t);
+        fragBut.setMaxWidth((int) (50 * screenScale));
+        fragBut.setGravity(View.FOCUS_LEFT);
+        fragBut.setLayoutParams(lp);
+        fragBut.setPadding(buffer, buffer, buffer, buffer);
+        fragBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToMenu(t);
+            }
+        });
+        final int currentFragID = fragIDCounter;    fragIDCounter++;
+        fragBut.setId(currentFragID);
+        if(currentFragID%2 == 0) {
+            fragBut.setBackgroundResource(R.color.yellowDark);
+            fragBut.setTextColor(getResources().getColor(R.color.purpleLight));
+        }
+        if(currentFragID%2 == 1) {
+            fragBut.setBackgroundResource(R.color.yellowLight);
+            fragBut.setTextColor(getResources().getColor(R.color.purpleDark));
+
+        }
+        fragRows[yFragCo].addView(fragBut,xFragCo);
         incrementFragGrid();
     }
 
+    private void addToMenu(String t){
+        Button menuBut = new Button(getContext());
+        menuBut.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                getActivity().openOptionsMenu();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.remove(TasksMenuFragment.this);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        menuBut.setGravity(View.FOCUS_LEFT);
+        menuBut.setMaxWidth((int) (50*screenScale));
+        menuBut.setLayoutParams(lp);
+        menuBut.setPadding(buffer,buffer,buffer,buffer);
+        final int currentID = idCounter;
+        idCounter++;
+        if((xMenuCo+yMenuCo)%2 == 0) {
+            menuBut.setBackgroundResource(R.color.purpleDark);
+            menuBut.setTextColor(getResources().getColor(R.color.greenLight));
+        }
+        if((xMenuCo+yMenuCo)%2 == 1) {
+            menuBut.setBackgroundResource(R.color.purpleLight);
+            menuBut.setTextColor(getResources().getColor(R.color.greenMid));
+        }
+        menuBut.setId(currentID);
+        menuBut.setText(t);
+        menuRows[yMenuCo].addView(menuBut, xMenuCo);
+        incrementMenuGrid();
+    }
+
+    @Override
+    public void passData(View v) {
+        mFragListener.OnFragmentInteraction(v);
+    }
 }

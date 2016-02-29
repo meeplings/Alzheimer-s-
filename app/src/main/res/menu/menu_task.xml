@@ -1,10 +1,39 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".TaskActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+    tools:context=".TaskManagerActivity">
+    <group>
+        <item
+            android:id="@+id/action_settings"
+            android:orderInCategory="100"
+            android:title="@string/action_settings"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/DoneBox"
+            android:title="@string/DoneBox"
+            android:orderInCategory="1"
+            android:checkable="true" />
+        <item
+            android:id="@+id/PendingBox"
+            android:title="@string/PendingBox"
+            android:orderInCategory="2"
+            android:checkable="true"
+            android:checked="true" />
+        <!--
+        <item
+            android:title="@string/TaskDesc"
+            android:id="@+id/DescBox"
+            android:orderInCategory="3"
+            android:onClick="viewDesc" />
+        <item
+            android:title="@string/startMenuButton"
+            android:id="@+id/detailsToFragBox"
+            android:onClick="toMenuFrag"
+            android:orderInCategory="4" />
+        <item
+            android:title="@string/RemoveBox"
+            android:id="@+id/removeTaskBox"
+            android:orderInCategory="5"
+            android:onClick="removeButton"/> -->
+    </group>
 </menu>
