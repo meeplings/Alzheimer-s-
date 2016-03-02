@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity implements GlobalVariables{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +16,9 @@ public class StartActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-
-    public void onClick(View v){
+    public void toTaskManager(View v) throws IllegalAccessException, InstantiationException {
         Intent i = new Intent(this,TaskManagerActivity.class);
         startActivity(i);
         finish();
     }
-
 }

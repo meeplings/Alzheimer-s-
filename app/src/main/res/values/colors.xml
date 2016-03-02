@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- TODO: change lilac color so its a bit darker-->
+<!-- Colors listed by number-high number = light color-->
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-
-    <color name="greenMid">#31FFA2</color>
-    <color name="slateGrey">#2F4F4F</color>
-    <color name="greenLight">#8EFFCC</color>
-    <color name="greenDark">#10A626</color>
-    <color name="purpleLight">#C398FF</color>
-    <color name="purpleDark">#5216A6</color>
-    <color name="yellowLight">#FFF48E</color>
-    <color name="yellowDark">#A69710</color>
-    <color name="orangeLight">#FFAC8E</color>
-    <color name="orangeDark">#A63910</color>
-
+    <color name="Blue1">#00050a</color>
+    <color name="Blue2">#000a14</color>
+    <color name="Blue3">#000f1e</color>
+    <color name="Blue4">#001428</color>
+    <color name="Blue5">#001933</color>
+    <color name="Blue6">#001e3d</color>
+    <color name="Blue7">#002347</color>
+    <color name="Blue8">#002851</color>
+    <color name="Blue9">#002d5b</color>
+    <!--BLUE 10 = MAIN BLUE-->
+    <color name="colorPrimary">#003366</color>
+    <color name="Blue11">#194775</color>
+    <color name="Blue12">#325b84</color>
+    <color name="Blue13">#4c7093</color>
+    <color name="Blue14">#6684a3</color>
+    <color name="Blue15">#7f99b2</color>
+    <color name="Blue16">#99adc1</color>
+    <color name="Blue17">#b2c1d1</color>
+    <color name="Blue18">#ccd6e0</color>
+    <color name="Blue19">#e5eaef</color>
+    <color name="colorAccentGreen">#006666</color>
+    <color name="colorAccentPurp">#671250</color>
+    <color name="colorPrimaryDark">#000066</color>
 </resources>

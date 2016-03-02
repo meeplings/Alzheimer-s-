@@ -1,5 +1,6 @@
 package com.example.asamoahfamily.alzheimers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -49,20 +50,6 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        MenuItem pend = (MenuItem) findViewById(R.id.PendingBox);
-        MenuItem done = (MenuItem) findViewById(R.id.DoneBox);
-        switch (id){
-            case R.id.DoneBox:
-                item.setChecked(true);
-                pend.setChecked(false);
-                break;
-            case R.id.PendingBox:
-                item.setChecked(true);
-                done.setChecked(false);
-                break;
-
-        }
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -85,8 +72,15 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
         infoView = v;
     }
 
-    @Override
     public void passData(View v) {
 
     }
+
+    public void toStart() {
+        Intent i = new Intent(this,StartActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+
 }

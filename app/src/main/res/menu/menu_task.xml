@@ -19,6 +19,7 @@
             android:orderInCategory="2"
             android:checkable="true"
             android:checked="true" />
+
         <!--
         <item
             android:title="@string/TaskDesc"
@@ -26,7 +27,7 @@
             android:orderInCategory="3"
             android:onClick="viewDesc" />
         <item
-            android:title="@string/startMenuButton"
+            android:title="@string/toTaskManager"
             android:id="@+id/detailsToFragBox"
             android:onClick="toMenuFrag"
             android:orderInCategory="4" />
@@ -34,6 +35,7 @@
             android:title="@string/RemoveBox"
             android:id="@+id/removeTaskBox"
             android:orderInCategory="5"
-            android:onClick="removeButton"/> -->
+            android:onClick="removeButton"/>
+        -->
     </group>
 </menu>
