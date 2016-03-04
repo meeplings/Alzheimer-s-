@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ScrollView;
 
 public class TaskManagerActivity extends AppCompatActivity implements TasksMenuFragment.OnFragmentInteractionListener, GlobalVariables {
 
@@ -19,6 +21,8 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
     private float screenScalar;
     private View infoView;
 
+    private ScrollView scroller;
+    private ImageButton upBut,downBut;
 
 
     @Override
@@ -29,9 +33,11 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
         setSupportActionBar(toolbar);
 
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-
         screenScalar = dm.density;
 
+        scroller = (ScrollView) findViewById(R.id.menuScroller);
+        upBut = (ImageButton) findViewById(R.id.upBut);
+        downBut = (ImageButton) findViewById(R.id.downBut);
     }
 
     @Override
@@ -80,6 +86,17 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
         Intent i = new Intent(this,StartActivity.class);
         startActivity(i);
         finish();
+    }
+
+
+    public void scroll(View v){
+        int s = p.y/4;
+
+        int id = v.getId();
+        if(id == upBut.getId())
+            scroller.arrowScroll(s);
+        else if(id == downBut.getId())
+            scroller.arrowScroll(-s);
     }
 
 

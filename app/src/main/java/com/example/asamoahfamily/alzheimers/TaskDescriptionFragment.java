@@ -64,6 +64,26 @@ public class TaskDescriptionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //    butTag = getStartButton().getTag();
+//
+//    switch(butTag){
+//        //TODO: set up the params, put in variables to store the data for the tasks
+//        case butTag.contains("phyical_activity"):
+//            task = new PhysicalActivity();
+//            break;
+//        case butTag.contains("mental_activity"):
+//            task = new MentalActivity();
+//            break;
+//        case butTag.contains("food"):
+//            task = new Food();
+//            break;
+//        case butTag.contains("medicine"):
+//            task = new Medicine();
+//            break;
+//        default:
+//            task = new OtherTask();
+//            break;
+//    }
         return inflater.inflate(R.layout.fragment_base_fragmnet, container, false);
     }
 

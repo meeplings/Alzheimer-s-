@@ -27,14 +27,6 @@
             android:background="@color/colorPrimary"
             android:id="@+id/menuTable">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/menuRow1"
-                android:background="@color/Blue15">
-
-            </TableRow>
-
         </TableLayout>
     </ScrollView>
 
@@ -63,5 +55,43 @@
 
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/scrollDesc"
+        android:textColor="@color/Blue16"
+        android:id="@+id/textView4"
+        android:gravity="center_horizontal"
+        android:layout_alignEnd="@id/textView"
+        android:layout_alignRight="@id/textView"
+        android:layout_alignStart="@id/textView"
+        android:layout_alignLeft="@id/textView"
+        android:layout_alignBottom="@+id/menuScroller"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/upBut"
+        android:src="@drawable/up_arrow"
+        android:adjustViewBounds="false"
+        android:scaleType="fitXY"
+        android:layout_alignBottom="@+id/menuScroller"
+        android:layout_alignRight="@+id/menuScroller"
+        android:layout_alignEnd="@+id/menuScroller"
+        android:onClick="scroll" />
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/downBut"
+        android:src="@drawable/down_arrow"
+        android:scaleType="fitXY"
+        android:layout_alignBottom="@+id/menuScroller"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="scroll" />
 
 </RelativeLayout>
