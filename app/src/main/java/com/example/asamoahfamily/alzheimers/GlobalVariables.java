@@ -11,4 +11,14 @@ public interface GlobalVariables {
 
     DisplayMetrics dm = new DisplayMetrics();
     Point p = new Point();
+
+    String MENU_TAG = "MENU_FRAG";
+    String DIALOG_TAG = "DIALOG_TAG";
+    String BUTTON_DATA = "BUTTON_DATA";
+
+    String MEDICINE = "MEDICINE";
+    String FOOD = "FOOD";
+    String PHYSICAL_ACTIVITY = "PHYSICAL ACTIVITY";
+    String MENTAL_ACTIVITY = "MENTAL ACTIVITY";
+    String OTHER = "OTHER";
 }

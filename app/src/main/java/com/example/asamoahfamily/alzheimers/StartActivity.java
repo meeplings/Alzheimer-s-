@@ -16,9 +16,16 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
         setSupportActionBar(toolbar);
     }
 
-    public void toTaskManager(View v) throws IllegalAccessException, InstantiationException {
+    public void toManager(View v) {
         Intent i = new Intent(this,TaskManagerActivity.class);
         startActivity(i);
         finish();
     }
+
+    public void toStart(View v){
+        Intent i = new Intent(this, StartActivity.class);
+        startActivity(i);
+        finish();
+    }
+
 }

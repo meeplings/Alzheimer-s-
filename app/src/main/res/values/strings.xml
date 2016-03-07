@@ -11,16 +11,30 @@
     <string name="taskInstructionText">Click One Of the Above Buttons To Setup The Task Manager</string>
     <string name="toTaskManager">Click Me To Go To The Patient Task Manager</string>
     <string name="Creators">Created By: Jeffrey Asamoah, Noah Koster, Jared Okun, Adam Schoenfeld</string>
-    <string name="scrollDesc">Click The Scroll Buttons To Adjust The Layout</string>
-    <string name="DoneBox">Mark As Done</string>
-    <string name="PendingBox">Mark as Pending</string>
+    <string name="scrollUp">UP</string>
+    <string name="scrollDown">DOWN</string>
+    <string name="doneBut">Done</string>
+    <string name="pendingBut">Pending</string>
+
+    <string name="none">NONE</string>
+    <string name="low">LOW</string>
+    <string name="med">MED</string>
+    <string name="high">HIGH</string>
+    <string name="top">TOP</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="listName">TASK NAME:</string>
+    <string name="listPrio">PRIORITY:</string>
+    <string name="listDone">TASK COMPLETED:</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_start">StartActivity</string>
-    <string name="TaskDesc">View Task Details...</string>
-    <string name="RemoveBox">RemoveThisButton...</string>
+    <!--<string name="TaskDesc">View Task Details...</string>-->
+    <!--<string name="RemoveBox">RemoveThisButton...</string>-->
     <string name="toStartActivity">Go To Start Screen</string>
+    <string name="setNameBut">Click Me To Change The Activity Name</string>
+    <string name="setImportanceBut">Click Me To Set The Activity Importance</string>
+    <string name="listItemName">Name:</string>
+    <string name="listItemContentHint">Description</string>
 
 
 </resources>

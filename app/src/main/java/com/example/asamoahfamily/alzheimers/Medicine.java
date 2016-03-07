@@ -1,11 +1,11 @@
 package com.example.asamoahfamily.alzheimers;
-import android.graphics.Color;
+public class Medicine extends Tasks{
 
-public abstract class Medicine extends Tasks{
+	static final String NO_DOSE = "No dosage set";
 	
-	protected Medicine(int prio, String na, boolean al, Color col, String dose){
+	protected Medicine(int prio, String na, boolean al, int col){
 		super(HIGH_PRIO,na,al,col);
-		dosage = dose;
+		dosage = NO_DOSE;
 	}
 
 	String dosage;

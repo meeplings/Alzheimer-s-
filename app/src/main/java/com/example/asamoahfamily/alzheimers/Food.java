@@ -1,14 +1,12 @@
 package com.example.asamoahfamily.alzheimers;
 
-import android.graphics.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Food extends Tasks{
 	
-	protected Food(int prio, String na, boolean al, Color col, 
+	protected Food(int prio, String na, boolean al, int col,
 			boolean e, ArrayList<String> foods, int aTime){
 		super(HIGH_PRIO,na,al,col);
 		

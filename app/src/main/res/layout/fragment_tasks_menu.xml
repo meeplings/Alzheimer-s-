@@ -5,20 +5,8 @@
     tools:context="layout.BlankFragment"
     android:id="@+id/tasksMenuFragment"
     android:visibility="visible"
-    android:background="@color/Blue18">
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/fragTable">
-
-        </TableLayout>
-    </ScrollView>
+    android:background="@color/Blue18"
+    android:gravity="center_horizontal">
 
     <TextView
         android:id="@+id/asksInstructionText"
@@ -28,9 +16,21 @@
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"
         android:textColor="@color/colorAccentPurp"
-        android:gravity="center_vertical"
-        android:minLines="2"
-        android:layout_toRightOf="@+id/scrollView"
-        android:layout_toEndOf="@+id/scrollView" />
+        android:gravity="center_vertical|center_horizontal"
+        android:minLines="2" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_marginTop="50dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/fragTable">
+
+        </TableLayout>
+    </ScrollView>
 
 </RelativeLayout>

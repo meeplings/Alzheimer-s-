@@ -21,9 +21,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="140dp"
-        android:onClick="toTaskManager"
-        android:background="@android:color/holo_purple"
-        android:nestedScrollingEnabled="false" />
+        android:onClick="toManager"
+        android:background="@android:color/holo_purple" />
 
     <TextView
         android:layout_width="wrap_content"

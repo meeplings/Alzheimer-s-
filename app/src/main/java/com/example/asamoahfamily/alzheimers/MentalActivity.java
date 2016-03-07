@@ -1,12 +1,10 @@
 package com.example.asamoahfamily.alzheimers;
 
-import android.graphics.Color;
-
 /**
  * Created by Asamoah Family on 2/24/2016.
  */
-public abstract class MentalActivity extends Tasks{
-    protected MentalActivity(int prio, String na, boolean al, Color col, double hrs, boolean ch) {
+public class MentalActivity extends Tasks{
+    protected MentalActivity(int prio, String na, boolean al, int col, double hrs, boolean ch) {
         super(MED_PRIO, na, al, col);
         hoursRecorded = hrs;
         challenge = ch;

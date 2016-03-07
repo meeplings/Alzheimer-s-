@@ -24,8 +24,8 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:id="@+id/menuTable">
+            android:id="@+id/menuTable"
+            android:gravity="center">
 
         </TableLayout>
     </ScrollView>
@@ -38,16 +38,22 @@
         android:id="@+id/textView"
         android:layout_gravity="center"
         android:onClick="addTaskMenu"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/addTask"
         android:textStyle="bold"
-        android:textColor="@color/colorAccentGreen" />
+        android:textColor="@color/colorAccentGreen"
+        android:textSize="24sp"
+        android:textIsSelectable="false"
+        android:minLines="2"
+        android:maxWidth="250dp"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/downBut"
+        android:layout_toStartOf="@+id/downBut" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
-        android:id="@+id/addTask"
+        android:id="@+id/menuContainer"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_centerHorizontal="true"
@@ -56,42 +62,48 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/scrollDesc"
-        android:textColor="@color/Blue16"
-        android:id="@+id/textView4"
-        android:gravity="center_horizontal"
-        android:layout_alignEnd="@id/textView"
-        android:layout_alignRight="@id/textView"
-        android:layout_alignStart="@id/textView"
-        android:layout_alignLeft="@id/textView"
-        android:layout_alignBottom="@+id/menuScroller"
-        android:layout_centerHorizontal="true" />
-
-    <ImageButton
+    <Button
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:id="@+id/upBut"
-        android:src="@drawable/up_arrow"
-        android:adjustViewBounds="false"
         android:scaleType="fitXY"
-        android:layout_alignBottom="@+id/menuScroller"
-        android:layout_alignRight="@+id/menuScroller"
-        android:layout_alignEnd="@+id/menuScroller"
-        android:onClick="scroll" />
+        android:onClick="scroll"
+        android:background="@drawable/up_arrow"
+        android:layout_below="@+id/menuScroller"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <ImageButton
+    <Button
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:id="@+id/downBut"
-        android:src="@drawable/down_arrow"
         android:scaleType="fitXY"
-        android:layout_alignBottom="@+id/menuScroller"
+        android:onClick="scroll"
+        android:background="@drawable/down_arrow"
+        android:layout_alignTop="@+id/upBut"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/upBut2"
+        android:scaleType="fitXY"
+        android:onClick="scroll"
+        android:background="@drawable/up_arrow"
+        android:layout_above="@+id/menuContainer"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="scroll" />
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/downBut2"
+        android:scaleType="fitXY"
+        android:onClick="scroll"
+        android:background="@drawable/down_arrow"
+        android:layout_above="@+id/menuContainer"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

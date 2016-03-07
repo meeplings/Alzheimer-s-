@@ -22,7 +22,18 @@
     <color name="Blue17">#b2c1d1</color>
     <color name="Blue18">#ccd6e0</color>
     <color name="Blue19">#e5eaef</color>
+
+    <color name="WarningGreen">#94bc63</color>
+    <color name="WarningYellow">#f3f315</color>
+    <color name="WarningOrange">#ff8300</color>
+    <color name="WarningOrangeRed">#ff4500</color>
+    <color name="WarningRed">#aa0114</color>
+
+
     <color name="colorAccentGreen">#006666</color>
+    <color name="deepGreen">#006633</color>
+    <color name="deepViolet">#8A2BE2</color>
+    <color name="pink">#ff87c3</color>
     <color name="colorAccentPurp">#671250</color>
     <color name="colorPrimaryDark">#000066</color>
 </resources>

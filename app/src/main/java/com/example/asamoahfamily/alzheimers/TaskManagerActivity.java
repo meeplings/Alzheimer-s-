@@ -1,29 +1,29 @@
 package com.example.asamoahfamily.alzheimers;
 
-import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
-public class TaskManagerActivity extends AppCompatActivity implements TasksMenuFragment.OnFragmentInteractionListener, GlobalVariables {
+public class TaskManagerActivity extends AppCompatActivity implements TasksMenuFragment.OnFragmentInteractionListener, ItemFragment.OnListFragmentInteractionListener ,
+        GlobalVariables {
 
 
-
-    private static final String MENU_TAG = "MENU_FRAG";
     private static final String TAG = "asamoahDebug";
-    private float screenScalar;
-    private View infoView;
+    private Tasks act;
 
     private ScrollView scroller;
-    private ImageButton upBut,downBut;
-
+    private Button upBut, downBut, upBut2, downBut2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +33,12 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
         setSupportActionBar(toolbar);
 
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-        screenScalar = dm.density;
 
         scroller = (ScrollView) findViewById(R.id.menuScroller);
-        upBut = (ImageButton) findViewById(R.id.upBut);
-        downBut = (ImageButton) findViewById(R.id.downBut);
+        upBut = (Button) findViewById(R.id.upBut);
+        upBut2 = (Button) findViewById(R.id.upBut2);
+        downBut = (Button) findViewById(R.id.downBut);
+        downBut2 = (Button) findViewById(R.id.downBut2);
     }
 
     @Override
@@ -47,8 +48,6 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
         getMenuInflater().inflate(R.menu.menu_task, menu);
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -64,40 +63,121 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
         return super.onOptionsItemSelected(item);
     }
 
-    public void addTaskMenu(View v) throws IllegalAccessException, InstantiationException {
+    public void addTaskMenu(View v) {
         Fragment mFragment = new TasksMenuFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.addTask, mFragment, MENU_TAG);
+        transaction.add(R.id.menuContainer, mFragment, MENU_TAG);
         transaction.addToBackStack(null);
         transaction.commit();
 
     }
 
     @Override
-    public void OnFragmentInteraction(View v) {
-        infoView = v;
+    public void TaskMenuInteraction(Button b) {
+        b.setBackgroundColor(ContextCompat.getColor(this, R.color.pink));
+
+        int type = Integer.parseInt(b.getTag().toString().substring(b.getTag().toString().length()-1));
+
+        switch (type) {
+            /*
+            1 - MED
+            2 - FOOD
+            3 - PHYS
+            4 - MENT
+            5 - OTHER
+             */
+            //int prio, String na, boolean al, Color col
+            default:
+                Log.d(TAG, "NO TYPE DETECTED");
+                break;
+            case 1:
+                act = new Medicine(Tasks.HIGH_PRIO, MEDICINE, true, ContextCompat.getColor(this, R.color.deepViolet));
+                break;
+            case 2:
+                act = new Food(Tasks.HIGH_PRIO, FOOD, true, ContextCompat.getColor(this, R.color.deepGreen), false, null, 0);
+                break;
+            case 3:
+                act = new PhysicalActivity(Tasks.LOW_PRIO, PHYSICAL_ACTIVITY, true, ContextCompat.getColor(this, R.color.colorAccentGreen), false, 0);
+                break;
+            case 4:
+                act = new MentalActivity(Tasks.MED_PRIO, MENTAL_ACTIVITY, true, ContextCompat.getColor(this, R.color.colorAccentPurp), 0, true);
+                break;
+
+
+        }
+
+
+        Fragment mFragment = new ItemFragment();
+        Bundle viewB = new Bundle();
+        viewB.putString("BUTTON_TAG", b.getTag().toString());
+        viewB.putInt("BUTTON_TYPE",type);
+        mFragment.setArguments(viewB);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.menuContainer, mFragment, "LIST_FRAG");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
-    public void passData(View v) {
-
-    }
-
-    public void toStart() {
-        Intent i = new Intent(this,StartActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-
-    public void scroll(View v){
-        int s = p.y/4;
+    public void scroll(View v) {
 
         int id = v.getId();
-        if(id == upBut.getId())
-            scroller.arrowScroll(s);
-        else if(id == downBut.getId())
-            scroller.arrowScroll(-s);
+        if (id == upBut.getId() || id == upBut2.getId())
+            scroller.arrowScroll(View.FOCUS_UP);
+        else if (id == downBut.getId() || id == downBut2.getId())
+            scroller.arrowScroll(View.FOCUS_DOWN);
     }
 
 
+    public void warningColors(View x){
+
+        TextView v = (TextView) findViewById(R.id.contentPrio);
+
+        ColorDrawable col = (ColorDrawable) v.getBackground();
+
+        int i = col.getColor();
+
+        switch(i){
+            case R.color.WarningGreen:
+                v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningYellow));
+                break;
+            case R.color.WarningYellow:
+                v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningOrange));
+                v.setHint(R.string.med);
+                break;
+            case R.color.WarningOrange:
+                v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningOrangeRed));
+                v.setHint(R.string.high);
+                break;
+            case R.color.WarningOrangeRed:
+                v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningRed));
+                v.setHint(R.string.top);
+                break;
+            case R.color.WarningRed:
+                v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningGreen));
+                v.setHint(R.string.none);
+                break;
+
+        }
+
+    }
+
+
+    public void isDone(View x){
+        TextView t = (TextView) findViewById(R.id.contentDone);
+
+        if(t.getHint() == getResources().getString(R.string.pendingBut)){
+            t.setHint(R.string.doneBut);
+            t.setBackgroundResource(R.drawable.check_mark);
+        }
+        else if(t.getHint() == getResources().getString(R.string.doneBut)){
+            t.setHint(R.string.pendingBut);
+            t.setBackgroundResource(R.drawable.dash_mark);
+        }
+    }
+
+    @Override
+    public void onListFragmentInteraction(Tasks act, View v,int type) {
+
+    }
 }

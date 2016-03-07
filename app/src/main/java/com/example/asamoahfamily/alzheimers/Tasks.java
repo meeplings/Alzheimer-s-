@@ -1,16 +1,18 @@
 package com.example.asamoahfamily.alzheimers;
 
-import android.graphics.Color;
 
 import java.util.Calendar;
 
-public abstract class Tasks {
+public abstract class Tasks{
 
+	static final int TOP_PRIO = 4;
 	static final int HIGH_PRIO = 3;
 	static final int MED_PRIO = 2;
 	static final int LOW_PRIO = 1;
+	static final int NONE = 0;
+    static final int[] PRIO = {NONE,LOW_PRIO,MED_PRIO,HIGH_PRIO,TOP_PRIO};
 	
-	protected Tasks(int prio, String na, boolean al, Color col){
+	protected Tasks(int prio, String na, boolean al, int col){
 		priority = prio;
 		name = na;
 		alert = al;
@@ -19,6 +21,10 @@ public abstract class Tasks {
 
 		calendar = calendar.getInstance();
 		
+	}
+
+	protected Tasks(){
+
 	}
 	
 	protected void checkTime(int alertTime){
@@ -35,7 +41,7 @@ public abstract class Tasks {
 	private int priority;
 	private String name;
 	private boolean alert;
-	private Color alertColor;
+	private int alertColor;
 	
 	protected Calendar calendar;
 	
@@ -45,7 +51,7 @@ public abstract class Tasks {
 		return name;}
 	protected boolean isAlert(){
 		return alert;}
-	protected Color getColor(){
+	protected int getColor(){
 		return alertColor;}
 	
 	protected void setPrio(int p){
@@ -54,9 +60,7 @@ public abstract class Tasks {
 		name = n;}
 	protected void setAlert(boolean a){
 		alert = a;}
-	protected void setColor(Color c){
+	protected void setColor(int c){
 		alertColor = c;}
-	
-	
 
 }
