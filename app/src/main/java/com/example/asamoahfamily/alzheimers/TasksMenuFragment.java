@@ -215,10 +215,10 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
                 id = 0;
         }
         getActivity().getWindowManager().getDefaultDisplay().getSize(p);
-        newBut.setMaxWidth(p.x / 3);
+        newBut.setMaxWidth(p.x / 4);
         newBut.setGravity(Gravity.CENTER);
         newBut.setLayoutParams(rowLP);
-        newBut.setPadding(buffer / 2, buffer / 2, buffer / 2, buffer / 2);
+        newBut.setPadding(buffer / 4, buffer / 4, buffer / 4, buffer / 4);
         final int currentID = id;
         newBut.setId(currentID);
         newBut.setBackgroundResource(R.color.Blue4);

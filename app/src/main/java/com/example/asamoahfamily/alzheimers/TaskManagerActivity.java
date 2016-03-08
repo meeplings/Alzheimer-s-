@@ -1,6 +1,5 @@
 package com.example.asamoahfamily.alzheimers;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -132,28 +131,26 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
     public void warningColors(View x){
 
         TextView v = (TextView) findViewById(R.id.contentPrio);
+        String viewHint = v.getHint().toString();
 
-        ColorDrawable col = (ColorDrawable) v.getBackground();
-
-        int i = col.getColor();
-
-        switch(i){
-            case R.color.WarningGreen:
+        switch(viewHint){
+            case "NONE":
                 v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningYellow));
+                v.setHint(R.string.low);
                 break;
-            case R.color.WarningYellow:
+            case "LOW":
                 v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningOrange));
                 v.setHint(R.string.med);
                 break;
-            case R.color.WarningOrange:
+            case "MED":
                 v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningOrangeRed));
                 v.setHint(R.string.high);
                 break;
-            case R.color.WarningOrangeRed:
+            case "HIGH":
                 v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningRed));
                 v.setHint(R.string.top);
                 break;
-            case R.color.WarningRed:
+            case "TOP":
                 v.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningGreen));
                 v.setHint(R.string.none);
                 break;
