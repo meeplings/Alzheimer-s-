@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <array name="yellowPrim">
-  <color name="Prime">#CDDC39</color>
-
+  <color name = "Prime">#CDDC39</color>
+  <color name = "Dark">#AFB42B</color>
+  <color name = "Light">#F0F4C3</color>
+  <color name = "Accent">#03A9F4</color>
+  <color name = "PrimeT">#212121</color>
+  <color name = "SecondT">#727272</color>
+  <color name = "Icon">#212121</color>
+  <color name = "">#</color>
 </array>
+
+
