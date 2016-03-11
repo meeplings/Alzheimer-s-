@@ -62,8 +62,25 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        //TODO: Figure out how to store stuffs
 
+        int mLength = menuTable.getChildCount();
+        int fLength = menuTable.getChildCount();
+
+        for(int i = 1; i <=mLength; i++)
+            for (int j = 1; j <= ((TableRow) menuTable.getChildAt(j)).getChildCount(); j++)
+                outState.putString( "MENU_BUT " + i + " TEXT",
+                        ((Button) ((TableLayout) menuTable.getChildAt(i)).getChildAt(j)).getText().toString()
+                );
+
+        for(int i = 1; i <= fLength; i++)
+            for (int j = 1; j <= ((TableRow) fragTable.getChildAt(j)).getChildCount(); j++)
+                outState.putString( "FRAG_BUT " + i + " TEXT",
+                        ((Button) ((TableLayout) fragTable.getChildAt(i)).getChildAt(j)).getText().toString()
+                );
+        outState.putInt("MENU CHILD COUNT", mLength);
+        outState.putInt("FRAG CHILD COUNT", fLength);
+        mFragListener.SaveToActivity(outState);
+        //getActivity().onSaveInstanceState(outState,);
     }
 
     @Override
@@ -162,7 +179,9 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
     }
 
     public interface OnFragmentInteractionListener{
-          void TaskMenuInteraction(Button b);
+        void TaskMenuInteraction(Button b);
+        Bundle SaveToActivity(Bundle b);
+
     }
 
     private void newBut(final String t, final String type) {

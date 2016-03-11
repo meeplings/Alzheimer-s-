@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class TaskManagerActivity extends AppCompatActivity implements TasksMenuFragment.OnFragmentInteractionListener, ItemFragment.OnListFragmentInteractionListener ,
@@ -20,10 +19,6 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 
     private static final String TAG = "asamoahDebug";
     private Tasks act;
-
-    private ScrollView scroller;
-    private Button upBut, downBut, upBut2, downBut2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +28,13 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        scroller = (ScrollView) findViewById(R.id.menuScroller);
-        upBut = (Button) findViewById(R.id.upBut);
-        upBut2 = (Button) findViewById(R.id.upBut2);
-        downBut = (Button) findViewById(R.id.downBut);
-        downBut2 = (Button) findViewById(R.id.downBut2);
     }
+
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putBundle("MENU_FRAG_BUNDLE", SaveToActivity());
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -118,13 +114,9 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
         transaction.commit();
     }
 
-    public void scroll(View v) {
-
-        int id = v.getId();
-        if (id == upBut.getId() || id == upBut2.getId())
-            scroller.arrowScroll(View.FOCUS_UP);
-        else if (id == downBut.getId() || id == downBut2.getId())
-            scroller.arrowScroll(View.FOCUS_DOWN);
+    @Override
+    public Bundle SaveToActivity(Bundle b) {
+        return b;
     }
 
 

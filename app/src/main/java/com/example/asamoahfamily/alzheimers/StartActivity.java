@@ -22,10 +22,9 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
         finish();
     }
 
-    public void toStart(View v){
-        Intent i = new Intent(this, StartActivity.class);
+    public void toList(View v){
+        Intent i = new Intent(this,ViewerActivity.class);
         startActivity(i);
         finish();
     }
-
 }

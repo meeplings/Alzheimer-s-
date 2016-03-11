@@ -35,6 +35,7 @@
     <string name="setImportanceBut">Click Me To Set The Activity Importance</string>
     <string name="listItemName">Name:</string>
     <string name="listItemContentHint">Description</string>
+    <string name="title_activity_viewer">ViewerActivity</string>
 
 
 </resources>

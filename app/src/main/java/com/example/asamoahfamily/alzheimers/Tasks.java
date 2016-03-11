@@ -42,6 +42,7 @@ public abstract class Tasks{
 	private String name;
 	private boolean alert;
 	private int alertColor;
+	private int id;
 	
 	protected Calendar calendar;
 	
@@ -53,7 +54,6 @@ public abstract class Tasks{
 		return alert;}
 	protected int getColor(){
 		return alertColor;}
-	
 	protected void setPrio(int p){
 		priority = p;}
 	protected void setName(String n){
@@ -62,5 +62,10 @@ public abstract class Tasks{
 		alert = a;}
 	protected void setColor(int c){
 		alertColor = c;}
-
+	protected int getId() {
+		return id;
+	}
+	protected void setId(int id) {
+		this.id = id;
+	}
 }

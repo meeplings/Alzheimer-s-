@@ -37,4 +37,15 @@
         android:textStyle="bold|italic"
         android:maxWidth="250dp"
         android:background="#b7e6e4" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button4"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="94dp"
+        android:onClick="toList" />
 </RelativeLayout>
