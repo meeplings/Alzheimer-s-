@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- Colors listed by number-high number = light color-->
+<!--TODO: replace the blues w/ the material design thingies-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+</selector>
+
 <resources>
     <color name="Blue1">#00050a</color>
     <color name="Blue2">#000a14</color>
