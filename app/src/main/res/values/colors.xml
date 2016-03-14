@@ -3,30 +3,27 @@
 <!-- Colors listed by number-high number = light color-->
 <!--TODO: replace the blues w/ the material design thingies-->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-</selector>
-
 <resources>
-    <color name="Blue1">#00050a</color>
-    <color name="Blue2">#000a14</color>
-    <color name="Blue3">#000f1e</color>
-    <color name="Blue4">#001428</color>
-    <color name="Blue5">#001933</color>
-    <color name="Blue6">#001e3d</color>
-    <color name="Blue7">#002347</color>
-    <color name="Blue8">#002851</color>
-    <color name="Blue9">#002d5b</color>
-    <!--BLUE 10 = MAIN BLUE-->
-    <color name="colorPrimary">#003366</color>
-    <color name="Blue11">#194775</color>
-    <color name="Blue12">#325b84</color>
-    <color name="Blue13">#4c7093</color>
-    <color name="Blue14">#6684a3</color>
-    <color name="Blue15">#7f99b2</color>
-    <color name="Blue16">#99adc1</color>
-    <color name="Blue17">#b2c1d1</color>
-    <color name="Blue18">#ccd6e0</color>
-    <color name="Blue19">#e5eaef</color>
+    <!--<color name="Blue1">#00050a</color>-->
+    <!--<color name="Blue2">#000a14</color>-->
+    <!--<color name="Blue3">#000f1e</color>-->
+    <!--<color name="Blue4">#001428</color>-->
+    <!--<color name="Blue5">#001933</color>-->
+    <!--<color name="Blue6">#001e3d</color>-->
+    <!--<color name="Blue7">#002347</color>-->
+    <!--<color name="Blue8">#002851</color>-->
+    <!--<color name="Blue9">#002d5b</color>-->
+    <!--&lt;!&ndash;BLUE 10 = MAIN BLUE&ndash;&gt;-->
+    <!--<color name="colorPrimary">#003366</color>-->
+    <!--<color name="Blue11">#194775</color>-->
+    <!--<color name="Blue12">#325b84</color>-->
+    <!--<color name="Blue13">#4c7093</color>-->
+    <!--<color name="Blue14">#6684a3</color>-->
+    <!--<color name="Blue15">#7f99b2</color>-->
+    <!--<color name="Blue16">#99adc1</color>-->
+    <!--<color name="Blue17">#b2c1d1</color>-->
+    <!--<color name="Blue18">#ccd6e0</color>-->
+    <!--<color name="Blue19">#e5eaef</color>-->
 
     <color name="WarningGreen">#94bc63</color>
     <color name="WarningYellow">#f3f315</color>
@@ -34,11 +31,57 @@
     <color name="WarningOrangeRed">#ff4500</color>
     <color name="WarningRed">#aa0114</color>
 
+    <color name = "divideLight">#B6B6B6</color>
+    <color name = "divideDark">#3F3F3F</color>
+    <color name = "darkPrimeT">#212121</color>
+    <color name = "lightPrimeT">#F9E6F0</color>
+    <color name = "secondT">#727272</color>
+    
 
-    <color name="colorAccentGreen">#006666</color>
-    <color name="deepGreen">#006633</color>
-    <color name="deepViolet">#8A2BE2</color>
-    <color name="pink">#ff87c3</color>
-    <color name="colorAccentPurp">#671250</color>
-    <color name="colorPrimaryDark">#000066</color>
+
+    <!--<color name="colorAccentGreen">#006666</color>-->
+    <!--<color name="deepGreen">#006633</color>-->
+    <!--<color name="deepViolet">#8A2BE2</color>-->
+    <!--<color name="pink">#ff87c3</color>-->
+    <!--<color name="colorAccentPurp">#671250</color>-->
+    <!--<color name="colorPrimaryDark">#000066</color>-->
+
+    <!--Array order:
+   1) Dark
+   2) Primary
+   3) Light
+   4) Accent
+   5) Icon
+   -->
+
+    <color name = "yDark">#AFB42B</color>
+    <color name = "yPrime">#CDDC39</color>
+    <color name = "yLight">#F0F4C3</color>
+    <color name = "yAccent">#03A9F4</color>
+    <color name = "yIcon">#212121</color>
+
+    <color name = "rDark">#D32F2F</color>
+    <color name = "rPrime">#F44336</color>
+    <color name = "rLight">#FFCDD2</color>
+    <color name = "rAccent">#FFC107</color>
+    <color name = "rIcon">#FFFFFF</color>
+
+    <color name = "dBDark">#455A64</color>
+    <color name = "dBPrime">#607d8b</color>
+    <color name = "dBLight">#CFD8DC</color>
+    <color name = "dbAccent">#009688</color>
+    <color name = "dbIcon">#FFFFFF</color>
+
+    <color name = "oDark">#E64A19</color>
+    <color name = "oPrime">#FF5722</color>
+    <color name = "oLight">#FFCCBC</color>
+    <color name = "oAccent">#FFEB3B</color>
+    <color name = "oIcon">#FFFFFF</color>
+
+    <color name = "brDark">#5D4037</color>
+    <color name = "brPrime">#795548</color>
+    <color name = "brLight">#D7CCC8</color>
+    <color name = "brAccent">#734DFF</color>
+    <color name = "brIcon">#FFFFFF</color>
+    
 </resources>

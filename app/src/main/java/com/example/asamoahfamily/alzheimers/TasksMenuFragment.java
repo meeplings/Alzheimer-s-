@@ -3,8 +3,6 @@ package com.example.asamoahfamily.alzheimers;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +23,17 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
 
     private int menuIDCounter,fragIDCounter;
     private OnFragmentInteractionListener mFragListener;
+
+    ThemeHandler tHandler;
+    /*
+    Order:
+        Primary
+        Dark
+        Light
+        Text Dark
+        Text Light
+        Secondary Text
+     */
     private int buffer;
     private int menuButCounter,fragButCounter;
     private TableRow.LayoutParams rowLP;
@@ -101,7 +110,7 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
         tableLP.gravity = Gravity.CENTER;
 
         rowLP.setMargins(buffer, buffer, buffer, buffer);
-        tableLP.setMargins(buffer/2,buffer/2,buffer/2,buffer/2);
+        tableLP.setMargins(buffer / 2, buffer / 2, buffer / 2, buffer / 2);
         fragButCounter = 0;
         menuButCounter = 0;
 
@@ -111,9 +120,11 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
     @Override
     public void onStart() {
         super.onStart();
-
         menuIDCounter = 0;
         fragIDCounter = 100;
+        tHandler = new ThemeHandler();
+        tHandler.setThemeCols(getContext());
+
 
         menuTable = (TableLayout) getActivity().findViewById(R.id.menuTable);
         fragTable = (TableLayout) getActivity().findViewById(R.id.fragTable);
@@ -156,7 +167,6 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
                 table = null;
         }
 
-        Log.d(TAG,Integer.toString(i));
         if (table.getChildCount() == 0)
              nr = new TableRow(getContext());
         else {
@@ -172,9 +182,9 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
         nr.setLayoutParams(rowLP);
         nr.addView(b);
         if (i%2== 0)
-            nr.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.Blue16));
+            nr.setBackgroundColor(tHandler.getmLight());
         if (i%2== 1)
-            nr.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.Blue14));
+            nr.setBackgroundColor(tHandler.getmDark());
         table.addView(nr);
     }
 
@@ -240,8 +250,8 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
         newBut.setPadding(buffer / 4, buffer / 4, buffer / 4, buffer / 4);
         final int currentID = id;
         newBut.setId(currentID);
-        newBut.setBackgroundResource(R.color.Blue4);
-        newBut.setTextColor(ContextCompat.getColor(getContext(), R.color.Blue16));
+        newBut.setBackgroundColor(tHandler.getmPrime());
+        newBut.setTextColor(tHandler.getmTextPrime());
         newRow(newBut, type);
     }
 }

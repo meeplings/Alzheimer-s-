@@ -9,8 +9,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@color/Blue14">
+        android:layout_gravity="center">
 
         <TextView
             android:id="@+id/nameTask"
@@ -36,8 +35,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/Blue17">
+        android:layout_height="match_parent">
 
         <EditText
             android:id="@+id/namePrio"
@@ -65,8 +63,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/Blue14">
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/nameDone"

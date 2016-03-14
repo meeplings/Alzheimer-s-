@@ -1,5 +1,6 @@
 package com.example.asamoahfamily.alzheimers;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -7,8 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +18,8 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 
     private static final String TAG = "asamoahDebug";
     private Tasks act;
+    private ThemeHandler tHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,9 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
+        tHandler = new ThemeHandler();
+        tHandler.setThemeCols(this);
+
     }
 
 //    @Override
@@ -36,27 +40,6 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 //        outState.putBundle("MENU_FRAG_BUNDLE", SaveToActivity());
 //    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //TODO: Change overflowMenu in styles
-        getMenuInflater().inflate(R.menu.menu_task, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public void addTaskMenu(View v) {
         Fragment mFragment = new TasksMenuFragment();
@@ -69,7 +52,7 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 
     @Override
     public void TaskMenuInteraction(Button b) {
-        b.setBackgroundColor(ContextCompat.getColor(this, R.color.pink));
+        b.setBackgroundColor(tHandler.getmAcc());
 
         int type = Integer.parseInt(b.getTag().toString().substring(b.getTag().toString().length()-1));
 
@@ -84,18 +67,19 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
             //int prio, String na, boolean al, Color col
             default:
                 Log.d(TAG, "NO TYPE DETECTED");
+                //TODO: add in other type thing
                 break;
             case 1:
-                act = new Medicine(Tasks.HIGH_PRIO, MEDICINE, true, ContextCompat.getColor(this, R.color.deepViolet));
+                act = new Medicine(Tasks.HIGH_PRIO, MEDICINE, true, Color.YELLOW);
                 break;
             case 2:
-                act = new Food(Tasks.HIGH_PRIO, FOOD, true, ContextCompat.getColor(this, R.color.deepGreen), false, null, 0);
+                act = new Food(Tasks.HIGH_PRIO, FOOD, true, Color.GREEN, false, null, 0);
                 break;
             case 3:
-                act = new PhysicalActivity(Tasks.LOW_PRIO, PHYSICAL_ACTIVITY, true, ContextCompat.getColor(this, R.color.colorAccentGreen), false, 0);
+                act = new PhysicalActivity(Tasks.LOW_PRIO, PHYSICAL_ACTIVITY, true, Color.BLUE, false, 0);
                 break;
             case 4:
-                act = new MentalActivity(Tasks.MED_PRIO, MENTAL_ACTIVITY, true, ContextCompat.getColor(this, R.color.colorAccentPurp), 0, true);
+                act = new MentalActivity(Tasks.MED_PRIO, MENTAL_ACTIVITY, true, Color.RED, 0, true);
                 break;
 
 
