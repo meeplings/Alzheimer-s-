@@ -52,7 +52,7 @@ public class ThemeHandler {
                 mCols = YELLOW_THEME;
                 break;
             case "ORANGE":
-                mCols = "ORANGE_THEME";
+                mCols = ORANGE_THEME;
                 break;
             default:
                 //TODO: add error to stop thing
