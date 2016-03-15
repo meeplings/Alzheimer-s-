@@ -17,7 +17,8 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
     public int themeID;
     private boolean themeChanged = false;
     private static final String TAG = "asamoahDebug";
-    ThemeHandler tHandler;
+    private ThemeHandler tHandler;
+    private String theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,6 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
             editorBut.setHint(R.string.toSettings);
             editorBut.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningRed));
         }
-
-        tHandler= new ThemeHandler();
-        tHandler.setThemeCols(this);
-
     }
 
 
@@ -61,29 +58,24 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
 
         switch (id){
             case R.id.menuBr:
-                setTheme(R.style.AppThemeBr);
+                theme = "BROWN_THEME";
                 themeChanged = true;
-                Log.d(TAG,getTheme().toString());
                 break;
             case R.id.menudB:
-                setTheme(R.style.AppThemedB);
+                theme = "DARK_BLUE_THEME";
                 themeChanged = true;
-                Log.d(TAG,getTheme().toString());
                 break;
             case R.id.menuY:
-                setTheme(R.style.AppThemeY);
+                theme = "YELLOW_THEME";
                 themeChanged = true;
-                Log.d(TAG,getTheme().toString());
                 break;
             case R.id.menuO:
-                setTheme(R.style.AppThemeO);
+                theme = "ORANGE_MENU";
                 themeChanged = true;
-                Log.d(TAG,getTheme().toString());
                 break;
             case R.id.menuR:
-                setTheme(R.style.AppThemeR);
+                theme = "RED_MENU"
                 themeChanged = true;
-                Log.d(TAG,getTheme().toString());
                 break;
             default:
                 themeChanged = false;
@@ -100,6 +92,9 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
     public void onOptionsMenuClosed(Menu menu) {
         super.onOptionsMenuClosed(menu);
         getApplication().setTheme(themeID);
+        
+        tHandler = new ThemeHandler();
+        tHandler.setTheme(theme);
 
         editorBut.setEnabled(true);
         editorBut.setBackgroundColor(tHandler.getmPrime());
