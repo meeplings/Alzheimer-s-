@@ -16,6 +16,8 @@ public interface GlobalVariables {
     String DIALOG_TAG = "DIALOG_TAG";
     String BUTTON_DATA = "BUTTON_DATA";
 
+    String T_NAME = "THEME_NAME";
+
     String MEDICINE = "MEDICINE";
     String FOOD = "FOOD";
     String PHYSICAL_ACTIVITY = "PHYSICAL ACTIVITY";

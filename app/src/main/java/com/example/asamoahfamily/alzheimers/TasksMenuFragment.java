@@ -24,7 +24,6 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
     private int menuIDCounter,fragIDCounter;
     private OnFragmentInteractionListener mFragListener;
 
-    ThemeHandler tHandler;
     /*
     Order:
         Primary
@@ -122,9 +121,6 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
         super.onStart();
         menuIDCounter = 0;
         fragIDCounter = 100;
-        tHandler = new ThemeHandler();
-        tHandler.setThemeCols(getContext());
-
 
         menuTable = (TableLayout) getActivity().findViewById(R.id.menuTable);
         fragTable = (TableLayout) getActivity().findViewById(R.id.fragTable);
@@ -182,9 +178,9 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
         nr.setLayoutParams(rowLP);
         nr.addView(b);
         if (i%2== 0)
-            nr.setBackgroundColor(tHandler.getmLight());
+            nr.setBackgroundColor(ThemeHandler.getmLight());
         if (i%2== 1)
-            nr.setBackgroundColor(tHandler.getmDark());
+            nr.setBackgroundColor(ThemeHandler.getmDark());
         table.addView(nr);
     }
 
@@ -208,6 +204,7 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
                 newBut.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (newBut.isSelected())  newBut.setBackgroundColor(ThemeHandler.getmAcc());
                         newBut(t, MENU);
                     }
                 });
@@ -236,6 +233,7 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
                 newBut.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (newBut.isSelected())  newBut.setBackgroundColor(ThemeHandler.getmAcc());
                         mFragListener.TaskMenuInteraction((Button) v);
                     }
                 });
@@ -250,8 +248,7 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
         newBut.setPadding(buffer / 4, buffer / 4, buffer / 4, buffer / 4);
         final int currentID = id;
         newBut.setId(currentID);
-        newBut.setBackgroundColor(tHandler.getmPrime());
-        newBut.setTextColor(tHandler.getmTextPrime());
+        newBut.setTextColor(ThemeHandler.getmTextPrime());
         newRow(newBut, type);
     }
 }

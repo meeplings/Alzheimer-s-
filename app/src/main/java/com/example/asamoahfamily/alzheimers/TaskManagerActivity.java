@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class TaskManagerActivity extends AppCompatActivity implements TasksMenuFragment.OnFragmentInteractionListener, ItemFragment.OnListFragmentInteractionListener ,
@@ -18,7 +19,6 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 
     private static final String TAG = "asamoahDebug";
     private Tasks act;
-    private ThemeHandler tHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        tHandler = new ThemeHandler();
-        tHandler.setThemeCols(this);
+        RelativeLayout tLayout = (RelativeLayout) findViewById(R.id.taskLayout);
+        tLayout.setBackgroundColor(ThemeHandler.getmDiv());
 
     }
 
@@ -52,8 +52,6 @@ public class TaskManagerActivity extends AppCompatActivity implements TasksMenuF
 
     @Override
     public void TaskMenuInteraction(Button b) {
-        b.setBackgroundColor(tHandler.getmAcc());
-
         int type = Integer.parseInt(b.getTag().toString().substring(b.getTag().toString().length()-1));
 
         switch (type) {

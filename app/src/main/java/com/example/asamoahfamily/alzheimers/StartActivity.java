@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,7 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
     public int themeID;
     private boolean themeChanged = false;
     private static final String TAG = "asamoahDebug";
-    private ThemeHandler tHandler;
+
     private String theme;
 
     @Override
@@ -70,11 +69,11 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
                 themeChanged = true;
                 break;
             case R.id.menuO:
-                theme = "ORANGE_MENU";
+                theme = "ORANGE_THEME";
                 themeChanged = true;
                 break;
             case R.id.menuR:
-                theme = "RED_MENU"
+                theme = "RED_THEME";
                 themeChanged = true;
                 break;
             default:
@@ -93,17 +92,17 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
         super.onOptionsMenuClosed(menu);
         getApplication().setTheme(themeID);
         
-        tHandler = new ThemeHandler();
-        tHandler.setTheme(theme);
+        new ThemeHandler(this);
+        ThemeHandler.setThemeCols(theme);
 
         editorBut.setEnabled(true);
-        editorBut.setBackgroundColor(tHandler.getmPrime());
+        editorBut.setBackgroundColor(ThemeHandler.getmPrime());
     }
 
     public void toManager(View v) {
         Intent i = new Intent(this,TaskManagerActivity.class);
+        i.putExtra(T_NAME,theme);
         startActivity(i);
-        finish();
     }
 
     public void toList(View v){
