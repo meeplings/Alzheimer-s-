@@ -1,43 +1,40 @@
 package com.example.asamoahfamily.alzheimers;
 
-import android.graphics.Color;
 
 import java.util.Calendar;
+import java.util.Date;
 
-public abstract class Tasks {
+public abstract class Tasks{
 
+	static final int TOP_PRIO = 4;
 	static final int HIGH_PRIO = 3;
 	static final int MED_PRIO = 2;
 	static final int LOW_PRIO = 1;
+	static final int NONE = 0;
+    static final int[] PRIO = {NONE,LOW_PRIO,MED_PRIO,HIGH_PRIO,TOP_PRIO};
 	
-	protected Tasks(int prio, String na, boolean al, Color col){
+	protected Tasks(int prio, String na){
 		priority = prio;
 		name = na;
-		alert = al;
-		alertColor = col;
 
-
-		calendar = calendar.getInstance();
-		
-	}
-	
-	protected void checkTime(int alertTime){
-		if(calendar.get(calendar.HOUR_OF_DAY) > alertTime)
-			System.out.println("This patient needs to do '" + getName()+ "'");
-		
+        mDate = new Date();
+        mFormat = Calendar.getInstance();
 	}
 
-//	protected boolean checkTime(){
-//		calendar.DATE
-//
-//	}
+	protected Tasks(){
+
+	}
 	
+	protected abstract boolean checkTime();
 	private int priority;
 	private String name;
 	private boolean alert;
-	private Color alertColor;
-	
-	protected Calendar calendar;
+	private int alertColor;
+	private int id;
+
+	protected Date mDate;
+    protected static Calendar mFormat;
+
 	
 	protected int getPrio(){
 		return priority;}
@@ -45,18 +42,20 @@ public abstract class Tasks {
 		return name;}
 	protected boolean isAlert(){
 		return alert;}
-	protected Color getColor(){
+	protected int getColor(){
 		return alertColor;}
-	
 	protected void setPrio(int p){
 		priority = p;}
 	protected void setName(String n){
 		name = n;}
 	protected void setAlert(boolean a){
 		alert = a;}
-	protected void setColor(Color c){
+	protected void setColor(int c){
 		alertColor = c;}
-	
-	
-
+	protected int getId() {
+		return id;
+	}
+	protected void setId(int id) {
+		this.id = id;
+	}
 }

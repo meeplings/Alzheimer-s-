@@ -5,7 +5,7 @@
     tools:context="layout.BlankFragment"
     android:id="@+id/tasksMenuFragment"
     android:visibility="visible"
-    android:background="#33e7bd">
+    android:gravity="center_horizontal">
 
     <TextView
         android:id="@+id/asksInstructionText"
@@ -13,7 +13,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:textStyle="bold"
+        android:gravity="center_vertical|center_horizontal"
+        android:minLines="2" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_marginTop="50dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/fragTable">
+
+        </TableLayout>
+    </ScrollView>
 
 </RelativeLayout>

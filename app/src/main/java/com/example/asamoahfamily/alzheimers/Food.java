@@ -1,61 +1,35 @@
 package com.example.asamoahfamily.alzheimers;
 
-import android.graphics.Color;
+import java.util.Calendar;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-public abstract class Food extends Tasks{
+public class Food extends Tasks{
 	
-	protected Food(int prio, String na, boolean al, Color col, 
-			boolean e, ArrayList<String> foods, int aTime){
-		super(HIGH_PRIO,na,al,col);
-		
+	protected Food(int prio, String na, double aTime){
+		super(prio,na);
 		alertTime = aTime;
-		hasEaten = e;
-		favFoods = foods;
-
 	}
 	
-	private int alertTime;
+	private double alertTime;
 	private boolean hasEaten;
-	private List<String> favFoods;
+	private String meal;
 	
-	protected void setATime(int a){
-		alertTime = a;
+	protected void setATime(double alertTime){
+		this.alertTime=alertTime;
 	}
-	protected int getATime(){
+	protected double getATime(){
 		return alertTime;
 	}
-	protected void setEaten(boolean e){
-		hasEaten = e;
-	}
+	protected void setEaten(boolean e){	hasEaten = e;}
 	protected boolean getEaten(){
 		return hasEaten;
 	}
-	
-	protected void getFavFoods(){
-		System.out.println("This patient's favorite foods are: " + favFoods);
-	}
-	
-	protected void addToFavFoods(String f){
-		favFoods.add(f);
-		System.out.println(f + "has been added!");
-	}
-	
-	protected void removeFromFavFoods(String f){
-		favFoods.remove(f);
-		System.out.println(f + "has been removed!");
-	}
+    protected void setMeal(String meal) {this.meal = meal;}
 
-	protected void checkTime(){
-		if(calendar.get(calendar.HOUR_OF_DAY) > alertTime)
-			System.out.println("This patient eat to do '" +getName());
+    protected String getMeal() {return meal;}
+
+	@Override
+	protected boolean checkTime() {
+		int mTime = mFormat.get(Calendar.HOUR_OF_DAY);
+		return Math.abs(alertTime - mTime) >= 2;
 	}
-	
-	
-	
-
-
 }

@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Colors listed by number-high number = light color-->
+<!--TODO: replace the blues w/ the material design thingies-->
+
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="WarningGreen">#94bc63</color>
+    <color name="WarningYellow">#f3f315</color>
+    <color name="WarningOrange">#ff8300</color>
+    <color name="WarningOrangeRed">#ff4500</color>
+    <color name="WarningRed">#aa0114</color>
+
+    <color name = "divideLight">#D3D3D3</color>
+    <color name = "divideDark">#3F3F3F</color>
+    <color name = "darkPrimeT">#212121</color>
+    <color name = "lightPrimeT">#F9E6F0</color>
+    <color name = "secondT">#727272</color>
+
+    <!--Array order:
+   1) Dark
+   2) Primary
+   3) Light
+   4) Accent
+   5) Icon
+   -->
+
+    <color name = "yDark">#AFB42B</color>
+    <color name = "yPrime">#CDDC39</color>
+    <color name = "yLight">#F0F4C3</color>
+    <color name = "yAccent">#03A9F4</color>
+    <color name = "yIcon">#212121</color>
+
+    <color name = "rDark">#D32F2F</color>
+    <color name = "rPrime">#F44336</color>
+    <color name = "rLight">#FFCDD2</color>
+    <color name = "rAccent">#FFC107</color>
+    <color name = "rIcon">#FFFFFF</color>
+
+    <color name = "dBDark">#455A64</color>
+    <color name = "dBPrime">#607d8b</color>
+    <color name = "dBLight">#CFD8DC</color>
+    <color name = "dbAccent">#009688</color>
+    <color name = "dbIcon">#FFFFFF</color>
+
+    <color name = "oDark">#E64A19</color>
+    <color name = "oPrime">#FF5722</color>
+    <color name = "oLight">#FFCCBC</color>
+    <color name = "oAccent">#FFEB3B</color>
+    <color name = "oIcon">#FFFFFF</color>
+
+    <color name = "brDark">#5D4037</color>
+    <color name = "brPrime">#795548</color>
+    <color name = "brLight">#D7CCC8</color>
+    <color name = "brAccent">#734DFF</color>
+    <color name = "brIcon">#FFFFFF</color>
+    
 </resources>
