@@ -9,15 +9,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class StartActivity extends AppCompatActivity implements GlobalVariables{
 
     private Button editorBut;
-    public int themeID;
     private boolean themeChanged = false;
-    private static final String TAG = "asamoahDebug";
-
+    private OutputStream sendData;
+    private InputStream getData;
     private String theme;
+
+    private static final String TAG = "asamoahDebug";
+    private static final String THEME_FILE = "tData";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +35,26 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         editorBut = (Button) findViewById(R.id.button);
-        if(!themeChanged){
-            editorBut.setEnabled(false);
-            editorBut.setHint(R.string.toSettings);
-            editorBut.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningRed));
+
+        try{
+            getData = openFileInput(THEME_FILE);
+            FileInputStream mFile = openFileInput(THEME_FILE);
+            int counter;
+            String mData = "";
+
+            while ((counter = mFile.read()) !=-1){
+                mData+= Character.toString((char) counter);
+            }
+            theme = mData;
+            themeChanged = true;
+            updateTheme();
+            Toast.makeText(this,"PREVIOUS THEME LOADED",Toast.LENGTH_SHORT).show();
+        } catch (IOException e){
+            Toast.makeText(this,"NO THEME SELECTED",Toast.LENGTH_SHORT).show();
         }
+
+        if(!themeChanged)
+            editorBut.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningRed));
     }
 
 
@@ -82,7 +106,7 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
         }
 
         if(themeChanged){
-            themeID = id;
+            Toast.makeText(this,theme + "WAS SAVED",Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -90,25 +114,40 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
     @Override
     public void onOptionsMenuClosed(Menu menu) {
         super.onOptionsMenuClosed(menu);
-        getApplication().setTheme(themeID);
-        
-        new ThemeHandler(this);
-        ThemeHandler.setThemeCols(theme);
-
-        editorBut.setEnabled(true);
-        editorBut.setBackgroundColor(ThemeHandler.getmPrime());
+        try {
+            FileOutputStream toFile = openFileOutput(THEME_FILE, MODE_PRIVATE);
+            toFile.write(theme.getBytes());
+            toFile.close();
+            updateTheme();
+        }catch (IOException e){
+            Toast.makeText(this,"COULDN'T SAVE THEME",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void toManager(View v) {
-        Intent i = new Intent(this,TaskManagerActivity.class);
-        i.putExtra(T_NAME,theme);
-        startActivity(i);
+        if(!themeChanged){
+            Toast.makeText(this,"PLEASE SELECT A THEME 1ST",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent i = new Intent(this, TaskManagerActivity.class);
+            i.putExtra(T_NAME, theme);
+            startActivity(i);
+            finish();
+        }
     }
 
     public void toList(View v){
         Intent i = new Intent(this,ViewerActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void updateTheme(){
+        new ThemeHandler(this);
+        ThemeHandler.setThemeCols(theme);
+
+        editorBut.setEnabled(true);
+        editorBut.setBackgroundColor(ThemeHandler.getmPrime());
     }
 
 

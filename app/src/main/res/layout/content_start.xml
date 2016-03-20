@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="140dp"
         android:onClick="toManager"
-        android:background="@android:color/holo_purple" />
+        android:background="@color/WarningRed" />
 
     <TextView
         android:layout_width="wrap_content"

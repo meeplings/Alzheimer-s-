@@ -4,7 +4,7 @@ import java.util.Random;
 /**
  * Created by Jared on 3/14/2016.
  */
-public class Memory extends Tasks {
+public class Memory {
     private int[][] board;
     private int difficulty;
     //difficulty will determine the amount of copies of each card
@@ -27,6 +27,10 @@ public class Memory extends Tasks {
             }
         }
         this.difficulty=difficulty;
+    }
+
+    protected boolean checkTime(){
+        return false;
     }
 
 

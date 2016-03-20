@@ -3,6 +3,7 @@ package com.example.asamoahfamily.alzheimers;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,8 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
     private static final String FRAG = "FragmentManager";
     private static final int MED_TAG = 1;
     private static final int FOOD_TAG = 2;
-    private static final int PHYS_TAG = 3;
-    private static final int MENT_TAG = 4;
-    private static final int OTHER = 5;
+    private static final int REC_TAG = 3;
+    private static final int OTHER = 2;
 
     private int menuIDCounter,fragIDCounter;
     private OnFragmentInteractionListener mFragListener;
@@ -39,7 +39,7 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
     private TableLayout.LayoutParams tableLP;
     private static final String TAG = "asamoahDebug";
     private TableLayout menuTable;  private TableLayout fragTable;
-    float screenScale;
+    private float screenScale;
 
 
     public TasksMenuFragment() {
@@ -88,7 +88,6 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
         outState.putInt("MENU CHILD COUNT", mLength);
         outState.putInt("FRAG CHILD COUNT", fLength);
         mFragListener.SaveToActivity(outState);
-        //getActivity().onSaveInstanceState(outState,);
     }
 
     @Override
@@ -127,8 +126,7 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
 
         newBut(MEDICINE, FRAG);
         newBut(FOOD, FRAG);
-        newBut(PHYSICAL_ACTIVITY, FRAG);
-        newBut(MENTAL_ACTIVITY, FRAG);
+        newBut(RECREATION, FRAG);
         newBut("BREAKFAST", MENU);
         newBut("LUNCH", MENU);
         newBut("DINNER", MENU);
@@ -217,17 +215,15 @@ public class TasksMenuFragment extends Fragment implements GlobalVariables{
                     case FOOD:
                         key = FOOD_TAG;
                         break;
-                    case PHYSICAL_ACTIVITY:
-                        key = PHYS_TAG;
-                        break;
-                    case MENTAL_ACTIVITY:
-                        key = MENT_TAG;
+                    case RECREATION:
+                        key = REC_TAG;
                         break;
                     default:
                         key = OTHER;
                         break;
                 }
-                newBut.setTag(type + "_" + t + "_" + Integer.toString(key));
+                Log.d(TAG,"KEY: " + key);
+                newBut.setTag(Integer.toString(key) + "_" + type + "_" + t );
                 id = menuIDCounter;
                 menuIDCounter++;
                 newBut.setOnClickListener(new View.OnClickListener() {

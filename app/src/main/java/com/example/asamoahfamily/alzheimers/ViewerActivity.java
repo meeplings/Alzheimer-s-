@@ -3,20 +3,19 @@ package com.example.asamoahfamily.alzheimers;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class ViewerActivity extends AppCompatActivity {
 
-    private MyDBHandler dbHandler;
-    private TextView dbText;
     private static final String TAG = "asamoahDebug";
+    private static final String FILE_NAME = "mfile";
     private EditText inputText;
-
-    int[] c = {0,0};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,41 +23,50 @@ public class ViewerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_viewer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        dbText = (TextView) findViewById(R.id.textView3);
         inputText = (EditText) findViewById(R.id.editText);
+        try{
+            FileInputStream mFile = openFileInput(FILE_NAME);
 
-        dbHandler = new MyDBHandler(this,null);
-        Log.d(TAG,"handler created successfully");
+            int counter;
+            String mData = "";
 
-    }
-
-    public void del(View v){
-        String input = inputText.getText().toString();
-        dbHandler.delInfo(input);
-        printDB();
-
+            while ((counter = mFile.read()) !=-1){
+                mData+= Character.toString((char) counter);
+            }
+            Toast.makeText(this,mData,Toast.LENGTH_SHORT).show();
+        }catch (IOException e){
+            Toast.makeText(this,"FILE DOESN'T EXIST",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void add(View v){
-        c[0] ++;
-        PatientInfo pat = new PatientInfo((inputText.getText().toString()));
-//        dbHandler.addInfo(pat);
-        printDB();
+        String data = inputText.getText().toString();
+        try {
+            FileOutputStream toFile = openFileOutput(FILE_NAME, MODE_PRIVATE);
+            toFile.write(data.getBytes());
+            toFile.close();
+            Toast.makeText(this,"FILE MADE SUCCESSFULLY",Toast.LENGTH_SHORT).show();
+        }catch (IOException e){
+            Toast.makeText(this,"COULDN'T MAKE FILE",Toast.LENGTH_SHORT).show();
+        }finally {
+            inputText.setText("");
+        }
     }
 
-    public void printDB(){
-        c[1] ++;
-        String dbString = dbHandler.dbToString();
-        dbText.setText(dbString);
-         inputText.setText("");
+    public void del(View v){
+        try{
+            FileInputStream fromFile = openFileInput(FILE_NAME);
+            int counter;
+            String mData = "";
+
+            while ((counter = fromFile.read()) !=-1){
+                mData+= Character.toString((char) counter);
+            }
+            Toast.makeText(this,mData,Toast.LENGTH_SHORT).show();
+
+        }catch (IOException e){
+            Toast.makeText(this,"COULDN'T RETRIEVE DATA FROM FILE",Toast.LENGTH_SHORT).show();
+        }
 
     }
-
-    public void clear(View v){
-        dbHandler.delAll();
-    }
-
-
-
 }

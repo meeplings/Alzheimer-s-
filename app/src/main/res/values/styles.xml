@@ -2,10 +2,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name= "colorPrime">@color/WarningOrange</item>
+        <item name="colorPrime">@color/WarningOrange</item>
         <item name="colorDark">@color/WarningOrangeRed</item>
         <item name="colorAccent">@color/WarningGreen</item>
-        <item name ="colorLight">@color/WarningYellow</item>
+        <item name="colorLight">@color/WarningYellow</item>
         <item name="textColorPrimary">@color/darkPrimeT</item>
         <item name="divide">@color/divideDark</item>
 
@@ -21,33 +21,33 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <style name="AppThemeY" parent="AppTheme" >
+    <style name="AppThemeY" parent="AppTheme">
         <item name="colorPrime">@color/yPrime</item>
         <item name="colorDark">@color/yDark</item>
         <item name="colorAccent">@color/yAccent</item>
-        <item name ="colorLight">@color/yLight</item>
+        <item name="colorLight">@color/yLight</item>
         <item name="divide">@color/divideDark</item>
         <item name="textColorPrimary">@color/darkPrimeT</item>
     </style>
 
-    <style name="AppThemedB" parent="AppTheme" >
+    <style name="AppThemedB" parent="AppTheme">
         <item name="colorPrime">@color/dBPrime</item>
         <item name="colorDark">@color/dBDark</item>
         <item name="colorAccent">@color/dbAccent</item>
         <item name="textColorPrimary">@color/lightPrimeT</item>
-        <item name ="colorLight">@color/dBLight</item>
+        <item name="colorLight">@color/dBLight</item>
         <item name="divide">@color/divideLight</item>
     </style>
 
-    <style name="AppThemeO" parent="AppTheme" >
+    <style name="AppThemeO" parent="AppTheme">
         <item name="colorPrime">@color/oPrime</item>
         <item name="colorDark">@color/oDark</item>
         <item name="colorAccent">@color/oAccent</item>
-        <item name ="colorLight">@color/oLight</item>
+        <item name="colorLight">@color/oLight</item>
         <item name="textColorPrimary">@color/darkPrimeT</item>
     </style>
 
-    <style name="AppThemeBr" parent="AppTheme" >
+    <style name="AppThemeBr" parent="AppTheme">
         <item name="colorPrime">@color/brPrime</item>
         <item name="colorDark">@color/brDark</item>
         <item name="colorAccent">@color/brAccent</item>
@@ -56,7 +56,7 @@
         <item name="divide">@color/divideLight</item>
     </style>
 
-    <style name="AppThemeR" parent="AppTheme" >
+    <style name="AppThemeR" parent="AppTheme">
         <item name="colorPrime">@color/rPrime</item>
         <item name="colorDark">@color/rDark</item>
         <item name="colorLight">@color/rLight</item>

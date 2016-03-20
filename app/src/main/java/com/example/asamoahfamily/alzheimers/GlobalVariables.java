@@ -20,7 +20,6 @@ public interface GlobalVariables {
 
     String MEDICINE = "MEDICINE";
     String FOOD = "FOOD";
-    String PHYSICAL_ACTIVITY = "PHYSICAL ACTIVITY";
-    String MENTAL_ACTIVITY = "MENTAL ACTIVITY";
+    String RECREATION = "RECREATION";
     String OTHER = "OTHER";
 }

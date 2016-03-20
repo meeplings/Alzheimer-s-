@@ -2,6 +2,7 @@ package com.example.asamoahfamily.alzheimers;
 
 
 import java.util.Calendar;
+import java.util.Date;
 
 public abstract class Tasks{
 
@@ -12,39 +13,28 @@ public abstract class Tasks{
 	static final int NONE = 0;
     static final int[] PRIO = {NONE,LOW_PRIO,MED_PRIO,HIGH_PRIO,TOP_PRIO};
 	
-	protected Tasks(int prio, String na, boolean al, int col){
+	protected Tasks(int prio, String na){
 		priority = prio;
 		name = na;
-		alert = al;
-		alertColor = col;
 
-
-		calendar = calendar.getInstance();
-		
+        mDate = new Date();
+        mFormat = Calendar.getInstance();
 	}
 
 	protected Tasks(){
 
 	}
 	
-	protected void checkTime(int alertTime){
-		if(calendar.get(calendar.HOUR_OF_DAY) > alertTime)
-			System.out.println("This patient needs to do '" + getName()+ "'");
-		
-	}
-
-//	protected boolean checkTime(){
-//		calendar.DATE
-//
-//	}
-	
+	protected abstract boolean checkTime();
 	private int priority;
 	private String name;
 	private boolean alert;
 	private int alertColor;
 	private int id;
-	
-	protected Calendar calendar;
+
+	protected Date mDate;
+    protected static Calendar mFormat;
+
 	
 	protected int getPrio(){
 		return priority;}
