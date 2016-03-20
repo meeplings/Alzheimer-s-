@@ -2,14 +2,15 @@ package com.example.asamoahfamily.alzheimers;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,6 +25,7 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
     private OutputStream sendData;
     private InputStream getData;
     private String theme;
+    private ActionBar mBar;
 
     private static final String TAG = "asamoahDebug";
     private static final String THEME_FILE = "tData";
@@ -34,6 +36,8 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
         setContentView(R.layout.activity_start);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mBar = getSupportActionBar();
+        mBar.show();
         editorBut = (Button) findViewById(R.id.button);
 
         try{
@@ -48,9 +52,11 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
             theme = mData;
             themeChanged = true;
             updateTheme();
-            Toast.makeText(this,"PREVIOUS THEME LOADED",Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.CoordinatorLayout),"PREVIOUS THEME LOADED",Snackbar.LENGTH_SHORT)
+                    .setActionTextColor(ThemeHandler.getmPrime()).show();
         } catch (IOException e){
-            Toast.makeText(this,"NO THEME SELECTED",Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.CoordinatorLayout),"NO THEME SELECTED",Snackbar.LENGTH_SHORT)
+                    .setActionTextColor(ThemeHandler.getmAcc()).show();
         }
 
         if(!themeChanged)
@@ -106,27 +112,26 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
         }
 
         if(themeChanged){
-            Toast.makeText(this,theme + "WAS SAVED",Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.CoordinatorLayout),theme + " WAS SAVED",Snackbar.LENGTH_SHORT)
+                    .setActionTextColor(ThemeHandler.getmPrime()).show();
         }
-        return super.onOptionsItemSelected(item);
-    }
 
-    @Override
-    public void onOptionsMenuClosed(Menu menu) {
-        super.onOptionsMenuClosed(menu);
         try {
             FileOutputStream toFile = openFileOutput(THEME_FILE, MODE_PRIVATE);
             toFile.write(theme.getBytes());
             toFile.close();
             updateTheme();
         }catch (IOException e){
-            Toast.makeText(this,"COULDN'T SAVE THEME",Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.CoordinatorLayout),"COULDN'T SAVE THEME",Snackbar.LENGTH_SHORT)
+                    .setActionTextColor(ThemeHandler.getmAcc()).show();
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void toManager(View v) {
         if(!themeChanged){
-            Toast.makeText(this,"PLEASE SELECT A THEME 1ST",Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.CoordinatorLayout),"PLEASE SELECT A THEME 1ST",Snackbar.LENGTH_SHORT)
+                    .setActionTextColor(ThemeHandler.getmAcc()).show();
         }
         else {
             Intent i = new Intent(this, TaskManagerActivity.class);
