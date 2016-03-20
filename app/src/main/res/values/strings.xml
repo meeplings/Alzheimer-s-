@@ -12,7 +12,7 @@
 
     <string name="taskInstructionText">Click One Of the Above Buttons To Setup The Task Manager</string>
     <string name="toTaskManager">Click Me To Go To The Patient Task Manager</string>
-    <string name="Creators">Created By: Jeffrey Asamoah, Noah Koster, Jared Okun, Adam Schoenfeld</string>
+    <string name="Creators">Created By: Jeffrey Asamoah, Jared Okun, Adam Schoenfeld</string>
 
     <string name="scrollUp">UP</string>
     <string name="scrollDown">DOWN</string>
@@ -51,6 +51,10 @@
     <string name="listItemContentHint">Description</string>
     <string name="title_activity_viewer">ViewerActivity</string>
     <string name="title_activity_task_description">TaskDescriptionActivity</string>
+    <string name="title_activity_nav">Nav Drawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 
 </resources>

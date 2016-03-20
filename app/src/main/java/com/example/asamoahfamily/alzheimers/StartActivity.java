@@ -147,6 +147,12 @@ public class StartActivity extends AppCompatActivity implements GlobalVariables{
         finish();
     }
 
+    public void toNav(View v){
+        Intent i = new Intent(this,NavActivity.class);
+        startActivity(i);
+        //finish();
+    }
+
     public void updateTheme(){
         new ThemeHandler(this);
         ThemeHandler.setThemeCols(theme);

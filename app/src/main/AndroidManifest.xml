@@ -29,7 +29,16 @@
         <activity
             android:name=".TaskDescriptionActivity"
             android:label="@string/title_activity_task_description"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NavActivity"
+            android:label="@string/title_activity_nav"
+            android:parentActivityName=".StartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.asamoahfamily.alzheimers.StartActivity" />
+        </activity>
     </application>
 
 </manifest>

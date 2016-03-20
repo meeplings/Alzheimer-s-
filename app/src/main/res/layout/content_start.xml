@@ -52,4 +52,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="94dp"
         android:onClick="toList" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:id="@+id/button2"
+        android:layout_alignBottom="@+id/toolbar"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:onClick="toNav"/>
 </RelativeLayout>
