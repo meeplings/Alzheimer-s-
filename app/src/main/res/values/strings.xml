@@ -1,0 +1,91 @@
+<resources>
+
+    <string name="action_settings">Settings</string>
+    <string name="defaultGridText">Click Me to Add A Button To The Manager</string>
+    <string name="addTaskButton">Click Here To Edit Task List</string>
+
+    <string name="breakfast">BREAKFAST</string>
+    <string name="lunch">LUNCH</string>
+    <string name="dinner">DINNER</string>
+
+    <string name="medicine">MEDICINE</string>
+    <string name="food">FOOD</string>
+    <string name="rec">RECREATION</string>
+
+
+    <string name="taskInstructionText">Click One Of the Above Buttons To Setup The Task Manager</string>
+    <string name="Creators">Created By: Jeffrey Asamoah, Jared Okun, and Adam Schoenfeld</string>
+
+
+    <string name="toTaskManager">Edit Todo List</string>
+    <string name="toStartMenu">Start Menu</string>
+    <string name="toTaskViewer">Task Viewer</string>
+
+    <string name="scrollUp">UP</string>
+    <string name="scrollDown">DOWN</string>
+
+    <string name="doneBut">Done</string>
+    <string name="pendingBut">Pending</string>
+
+    <string name="toSettings">Please select a color scheme before continuing</string>
+    <string name="disableTutorial">Go to settings to disable tutorial popups</string>
+    <string name="enableTutorial">Enable Tutorials</string>
+
+    <string name="none">NONE</string>
+    <string name="low">LOW</string>
+    <string name="med">MED</string>
+    <string name="high">HIGH</string>
+    <string name="top">TOP</string>
+
+    <string name="themeBr">Brown Theme</string>
+    <string name="themedB">Dark Blue Theme</string>
+    <string name="themeT">Teal Theme</string>
+    <string name="themeY">Yellow Theme</string>
+    <string name="themeR">Red Theme</string>
+
+    <string name="alertTime">Set an Alert Time:</string>
+    <string name="hrs">Hours Recorded:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="listName">TASK NAME:</string>
+    <string name="listPrio">PRIORITY:</string>
+    <string name="listDone">TASK COMPLETED:</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="toStartActivity">Home</string>
+    <string name="setNameBut">Click Me To Change The Activity Name</string>
+    <string name="setImportanceBut">Click Me To Set The Activity Importance</string>
+
+
+    <string name="listItemName">Type name here:</string>
+    <string name="listItemContentHint">Description</string>
+
+
+    <string name="title_activity_viewer">ViewerActivity</string>
+    <string name="title_activity_start">Welcome to Cactus</string>
+    <string name="title_activity_task_description">ToDo Description</string>
+    <string name="title_activity_nav">Nav Drawer</string>
+    <string name="title_activity_add_task">ToDo List Manager</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="cont">Continue</string>
+    <string name="loadSuccessful">FILE LOADED SUCCESSFULLY</string>
+    <string name="saveSuccessful">DATA SUCCESSFULLY SAVED</string>
+    <string name="loadFailed">UNABLE TO LOAD PREVIOUS FILE</string>
+    <string name="saveFailed">UNABLE TO SAVE DATA</string>
+
+    <string name="app_name">AlzheimerHelper</string>
+    <string name="barName">Cacti</string>
+    <string name="cactus">Convoluted Beauty</string>
+    <string name="home">To Home Screen</string>
+    <string name="settings">Settings…</string>
+    <string name="navArrow">Go To…</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="toThemeChooser">Theme Selector</string>
+
+</resources>

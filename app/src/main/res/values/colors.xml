@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <color name="WarningGreen">#94bc63</color>
+    <color name="WarningYellow">#f3f315</color>
+    <color name="WarningOrange">#ff8300</color>
+    <color name="WarningOrangeRed">#ff4500</color>
+    <color name="WarningRed">#aa0114</color>
+
+    <color name = "divideLight">#D3D3D3</color>
+    <color name = "divideDark">#3F3F3F</color>
+    <color name = "darkPrimeT">#212121</color>
+    <color name = "lightPrimeT">#F9E6F0</color>
+    <color name = "secondT">#727272</color>
+
+
+    <color name = "yDark">#AFB42B</color>
+    <color name = "yPrime">#CDDC39</color>
+    <color name = "yLight">#F0F4C3</color>
+
+    <color name = "yAccent">#03A9F4</color>
+    <color name = "yAdj1">#A7E359</color>
+    <color name = "yAdj2">#C0AA19</color>
+    <color name = "yIcon">#212121</color>
+
+
+    <color name = "rDark">#D32F2F</color>
+    <color name = "rPrime">#F44336</color>
+    <color name = "rLight">#FFCDD2</color>
+
+    <color name = "rAccent">#FFC107</color>
+    <color name = "rAdj1">#FFAA5C</color>
+    <color name = "rAdj2">#EB557B</color>
+    <color name = "rIcon">#FFFFFF</color>
+
+
+    <color name = "dBDark">#455A64</color>
+    <color name = "dBPrime">#607d8b</color>
+    <color name = "dBLight">#CFD8DC</color>
+
+    <color name = "dbAccent">#009688</color>
+    <color name = "dBAdj1">#9397B2</color>
+    <color name = "dBAdj2">#468461</color>
+    <color name = "dbIcon">#FFFFFF</color>
+
+
+    <color name = "tDark">#0C5E4A</color>
+    <color name = "tPrime">#3D8775</color>
+    <color name = "tLight">#3BCCA8</color>
+
+    <color name = "tAccent">#E0A889</color>
+    <color name = "tAdj1">#3BA8CC</color>
+    <color name = "tAdj2">#5FCC3B</color>
+    <color name = "tIcon">#FFFFFF</color>
+
+
+    <color name = "brDark">#5D4037</color>
+    <color name = "brPrime">#795548</color>
+    <color name = "brLight">#D7CCC8</color>
+
+    <color name = "brAccent">#4E785C</color>
+    <color name = "brAdj1">#A48B6A</color>
+    <color name = "brAdj2">#3B0619</color>
+    <color name = "brIcon">#FFFFFF</color>
+    
+</resources>

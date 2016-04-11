@@ -1,0 +1,41 @@
+<resources>
+    <!-- BaseAct application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrime">@color/WarningOrange</item>
+        <item name="colorDark">@color/WarningOrangeRed</item>
+        <item name="colorAccent">@color/WarningGreen</item>
+        <item name="colorLight">@color/WarningYellow</item>
+        <item name="textColorPrimary">@color/darkPrimeT</item>
+        <item name="divide">@color/divideDark</item>
+
+        <item name="textColorSecondary">@color/secondT</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppThemeY" parent="AppTheme">
+    </style>
+
+    <style name="AppThemedB" parent="AppTheme">
+        <item name="divide">@color/divideLight</item>
+    </style>
+
+    <style name="AppThemeT" parent="AppTheme">
+    </style>
+
+    <style name="AppThemeBr" parent="AppTheme">
+    </style>
+
+    <style name="AppThemeR" parent="AppTheme">
+    </style>
+
+
+</resources>
