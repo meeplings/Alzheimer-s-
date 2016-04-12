@@ -15,23 +15,23 @@
     <color name = "secondT">#727272</color>
 
 
-    <color name = "yDark">#AFB42B</color>
+    <color name = "yDark">#868B68</color>
     <color name = "yPrime">#CDDC39</color>
     <color name = "yLight">#F0F4C3</color>
 
-    <color name = "yAccent">#03A9F4</color>
-    <color name = "yAdj1">#A7E359</color>
+    <color name = "yAccent">#28A6FF</color>
+    <color name = "yAdj1">#FFD196</color>
     <color name = "yAdj2">#C0AA19</color>
     <color name = "yIcon">#212121</color>
 
 
-    <color name = "rDark">#D32F2F</color>
+    <color name = "rDark">#584A66</color>
     <color name = "rPrime">#F44336</color>
-    <color name = "rLight">#FFCDD2</color>
+    <color name = "rLight">#D295BC</color>
 
-    <color name = "rAccent">#FFC107</color>
-    <color name = "rAdj1">#FFAA5C</color>
-    <color name = "rAdj2">#EB557B</color>
+    <color name = "rAccent">#96FFCF</color>
+    <color name = "rAdj1">#FF9F7C</color>
+    <color name = "rAdj2">#ED95CE</color>
     <color name = "rIcon">#FFFFFF</color>
 
 
@@ -46,10 +46,10 @@
 
 
     <color name = "tDark">#0C5E4A</color>
-    <color name = "tPrime">#3D8775</color>
+    <color name = "tPrime">#60C698</color>
     <color name = "tLight">#3BCCA8</color>
 
-    <color name = "tAccent">#E0A889</color>
+    <color name = "tAccent">#9F75C9</color>
     <color name = "tAdj1">#3BA8CC</color>
     <color name = "tAdj2">#5FCC3B</color>
     <color name = "tIcon">#FFFFFF</color>
