@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-<group android:id="@+id/navList">
-    <item
-        android:title="@string/toStartActivity"
-        android:id="@+id/navToStart"/>
-    <item
-        android:title="@string/toTaskManager"
-        android:id="@+id/navToManager" />
-    <item
-        android:title="@string/toTaskViewer"
-        android:id="@+id/navToViewer"
-        android:enabled="false"/>
-    <item
-        android:title="@string/toThemeChooser"
-        android:id="@+id/navToThemes"/>
-
-</group>
+    <group android:id="@+id/navList">
+        <item
+            android:title="@string/toStartActivity"
+            android:id="@+id/navToStart"/>
+        <item
+            android:title="@string/toTaskManager"
+            android:id="@+id/navToManager" />
+        <item
+            android:title="@string/toTaskViewer"
+            android:id="@+id/navToViewer"
+            android:enabled="false"/>
+    </group>
+    
+    <group android:id= "@+id/appSettings">
+        <item
+            android:title = "@string/disableTutorial"
+            android:id = "@+id/tutorials"/> 
+        <item
+            android:title="@string/toThemeChooser"
+            android:id="@+id/navToThemes"/>
+    </group>
 
 </menu>
