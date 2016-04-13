@@ -100,7 +100,7 @@ public class StartActivity extends BaseAct {
             }
             theme = mData;
             themeChanged = true;
-            Toast.makeText(this,"Previous theme loaded",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,them + " theme loaded",Toast.LENGTH_SHORT).show();
             mFile.close();
         } catch (IOException e){
             Toast.makeText(this, "No theme selected", Toast.LENGTH_SHORT).show();
