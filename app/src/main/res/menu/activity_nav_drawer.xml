@@ -16,7 +16,7 @@
     
     <group android:id= "@+id/appSettings">
         <item
-            android:title = "@string/disableTutorial"
+            android:title ="@string/disableTutorial"
             android:id = "@+id/tutorials"/> 
         <item
             android:title="@string/toThemeChooser"

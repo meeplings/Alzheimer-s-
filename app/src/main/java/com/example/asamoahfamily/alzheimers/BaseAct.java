@@ -2,6 +2,7 @@ package com.example.asamoahfamily.alzheimers;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,10 +16,8 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 
 public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
@@ -27,13 +26,16 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
     protected Toolbar toolbar;
     protected boolean themeChanged = false;
     protected String theme;
+
+    protected Button red,blue,yellow,brown,teal,base;
+
     protected View bg,side,bot,back;
     protected View snackView;
     protected DrawerLayout drawer;
     protected NavigationView navView;
+    protected Button goBack;
 
     protected Point p;
-//    protected ImageButton settings;
     protected float screenScale;
     protected boolean showTutorial;
     boolean cont;
@@ -42,12 +44,12 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
 
     protected static final String THEME_FILE = "tData";
     protected static final String FAILED = "FAILED";
-    protected static final String NAME = "CUR_NAME";
-    protected static final String PRIO = "PRIORITY";
-    protected static final String TIME = "TIME";
 
+
+    protected static final String TUT = "TUTORIALS";
+    protected static final String ENABLED = "ENABLE";
     protected static final String SHARE = "QQQ";
-    protected static final String CURRENT_BUT = "myCurrentButton";
+
     protected static final String ALL_BUTS = "AllOfTheButs";
 
     protected static final String MEDICINE = "MEDICINE";
@@ -71,8 +73,6 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
         dm = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenScale = dm.density;
-
-        showTutorial=true;
         cont = false;
 
     }
@@ -147,8 +147,68 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
                 toList(item);
                 break;
             case R.id.navToThemes:
-                assert getSupportActionBar()!=null;
-                getSupportActionBar().openOptionsMenu();
+                setContentView(R.layout.background);
+
+                red = (Button) findViewById(R.id.redTest);
+                blue = (Button) findViewById(R.id.blueTest);
+                yellow = (Button) findViewById(R.id.yellowTest);
+                teal = (Button) findViewById(R.id.tealTest);
+                brown = (Button) findViewById(R.id.brownTest);
+                goBack = (Button) findViewById(R.id.themeSelected);
+
+                red.setVisibility(View.VISIBLE);
+                red.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        changeTheme(((Button) v).getText().toString());
+                    }
+                });
+                blue.setVisibility(View.VISIBLE);
+                blue.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        changeTheme(((Button) v).getText().toString());
+                    }
+                });
+                yellow.setVisibility(View.VISIBLE);
+                yellow.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        changeTheme(((Button) v).getText().toString());
+                    }
+                });
+                teal.setVisibility(View.VISIBLE);
+                teal.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        changeTheme(((Button) v).getText().toString());
+                    }
+                });
+                brown.setVisibility(View.VISIBLE);
+                brown.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        changeTheme(((Button) v).getText().toString());
+                    }
+                });
+                goBack.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.activity_start);
+                    }
+                });
+
+                break;
+            case R.id.tutorials:
+                String tutOn = "ON";
+                showTutorial= !showTutorial;
+                SharedPreferences.Editor mEdits = getSharedPreferences(TUT,MODE_PRIVATE).edit();
+                mEdits.putBoolean(ENABLED,showTutorial);
+                mEdits.apply();
+
+                if(!showTutorial)
+                    tutOn = "OFF";
+                Toast.makeText(this,"Tutorials are now " + tutOn, Toast.LENGTH_SHORT).show();
                 break;
             default:
                 toStart(item);
@@ -180,15 +240,7 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        settings = (ImageButton) findViewById(R.id.gear);
-//        settings.setOnClickListener(new ImageButton.OnClickListener(){
-//            public void onClick(View v){
-//                toolbar.showOverflowMenu();
-//            }
-//        });
-
         assert getSupportActionBar()!=null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.barName);
         getSupportActionBar().show();
 
@@ -213,67 +265,25 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        item.setChecked(true);
-
-        switch (id){
-            case R.id.menuBr:
-                theme = "BROWN_THEME";
-                themeChanged = true;
-                break;
-            case R.id.menudB:
-                theme = "DARK_BLUE_THEME";
-                themeChanged = true;
-                break;
-            case R.id.menuY:
-                theme = "YELLOW_THEME";
-                themeChanged = true;
-                break;
-            case R.id.menuT:
-                theme = "TEAL_THEME";
-                themeChanged = true;
-                break;
-            case R.id.menuR:
-                theme = "RED_THEME";
-                themeChanged = true;
-                break;
-            default:
-                themeChanged = false;
-                break;
-            //TODO: add default popup
-        }
-        updateTheme();
-
-        if(themeChanged){
-            Toast.makeText(this,theme + " WAS SAVED",Toast.LENGTH_SHORT).show();
-        }
-
-        try {
-            FileOutputStream toFile = openFileOutput(THEME_FILE, MODE_PRIVATE);
-            toFile.write(theme.getBytes());
-            toFile.close();
-            updateTheme();
-            setThemeFile();
-            toFile.close();
-        }catch (IOException e){
-            Toast.makeText(this,R.string.saveFailed,Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void updateTheme(){
         new ThemeHandler(this);
         ThemeHandler.setThemeCols(theme);
+        recreate();
+    }
+
+
+    public void changeTheme(String t){
+        if(t.equals(getResources().getString(R.string.themeR)))
+            theme = "RED_THEME";
+        else if(t.equals(getResources().getString(R.string.themeY)))
+            theme = "YELLOW_THEME";
+        else if(t.equals(getResources().getString(R.string.themedB)))
+            theme = "DARK_BLUE_THEME";
+        else if(t.equals(getResources().getString(R.string.themeT)))
+            theme = "TEAL_THEME";
+        else if(t.equals(getResources().getString(R.string.themeBr)))
+            theme = "BROWN_THEME";
+        setThemeFile();
         recreate();
     }
 }

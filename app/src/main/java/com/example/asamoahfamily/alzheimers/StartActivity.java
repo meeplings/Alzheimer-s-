@@ -5,12 +5,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -124,8 +126,66 @@ public class StartActivity extends BaseAct {
         recreate();
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        item.setChecked(true);
+
+        switch (id){
+            case R.id.menuBr:
+                theme = "BROWN_THEME";
+                themeChanged = true;
+                break;
+            case R.id.menudB:
+                theme = "DARK_BLUE_THEME";
+                themeChanged = true;
+                break;
+            case R.id.menuY:
+                theme = "YELLOW_THEME";
+                themeChanged = true;
+                break;
+            case R.id.menuT:
+                theme = "TEAL_THEME";
+                themeChanged = true;
+                break;
+            case R.id.menuR:
+                theme = "RED_THEME";
+                themeChanged = true;
+                break;
+            default:
+                themeChanged = false;
+                break;
+            //TODO: add default popup
+        }
+        if(themeChanged){
+            Toast.makeText(this,theme + " WAS SAVED",Toast.LENGTH_SHORT).show();
+        }
+
+        try {
+            FileOutputStream toFile = openFileOutput(THEME_FILE, MODE_PRIVATE);
+            toFile.write(theme.getBytes());
+            toFile.close();
+            updateTheme();
+            setThemeFile();
+            toFile.close();
+            Toast.makeText(this,R.string.saveSuccessful,Toast.LENGTH_SHORT).show();
+        }catch (IOException e){
+            Toast.makeText(this,R.string.saveFailed,Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        finish();
     }
 }

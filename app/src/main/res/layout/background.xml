@@ -29,4 +29,65 @@
         android:id="@+id/blockLeft"
         android:background="#156559" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/themeT"
+        android:id="@+id/tealTest"
+        android:visibility="invisible"
+        android:background="@color/tPrime"
+        android:layout_gravity="center_horizontal|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/themeY"
+        android:background="@color/yPrime"
+        android:visibility="invisible"
+        android:id="@+id/yellowTest"
+        android:layout_gravity="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/themeR"
+        android:id="@+id/redTest"
+        android:background="@color/rPrime"
+        android:layout_gravity="top|start"
+        android:visibility="invisible"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/themeBr"
+        android:background="@color/brPrime"
+        android:visibility="invisible"
+        android:id="@+id/brownTest"
+        android:layout_gravity="start|center_vertical" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/themedB"
+        android:visibility="invisible"
+        android:background="@color/dBPrime"
+        android:id="@+id/blueTest"
+        android:layout_gravity="end|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/baseTest"
+        android:visibility="invisible"
+        android:layout_gravity="end|center_vertical" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:id="@+id/themeSelected"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal|bottom" />
+
 </FrameLayout>
