@@ -37,10 +37,7 @@ public class StartActivity extends BaseAct {
         screenTools();
 
         tutPopup("Welcome to Cactus!");
-        tutPopup("To get started, first go to settings");
-
-        if(!themeChanged)
-            editorBut.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningRed));
+        tutPopup("To get started, first go to settings on the top bar");
         setThemeFile();
     }
 
@@ -58,15 +55,10 @@ public class StartActivity extends BaseAct {
     }
 
     public void toManager(View v) {
-        if(!themeChanged){
-            Toast.makeText(this, "PLEASE SELECT A THEME 1ST", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Intent i = new Intent(this, TaskManagerActivity.class);
-            i.putExtra(T_NAME, theme);
-            startActivity(i);
-            finish();
-        }
+        Intent i = new Intent(this, TaskManagerActivity.class);
+        i.putExtra(T_NAME, theme);
+        startActivity(i);
+        finish();
     }
 
     public void toList(View v){
@@ -108,10 +100,10 @@ public class StartActivity extends BaseAct {
             }
             theme = mData;
             themeChanged = true;
-            Toast.makeText(this,"PREVIOUS THEME LOADED",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Previous theme loaded",Toast.LENGTH_SHORT).show();
             mFile.close();
         } catch (IOException e){
-            Toast.makeText(this, "NO THEME SELECTED", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No theme selected", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -167,7 +159,7 @@ public class StartActivity extends BaseAct {
             //TODO: add default popup
         }
         if(themeChanged){
-            Toast.makeText(this,theme + " WAS SAVED",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,theme + " was saved!",Toast.LENGTH_SHORT).show();
         }
 
         try {
