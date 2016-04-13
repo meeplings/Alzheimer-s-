@@ -44,6 +44,12 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
 
     protected static final String THEME_FILE = "tData";
     protected static final String FAILED = "FAILED";
+    
+    protected static final String YELLOW = "YELLOW_THEME";
+    protected static final String BROWN = "BROWN_THEME";
+    protected static final String TEAL = "TEAL_THEME";
+    protected static final String RED = "RED_THEME";
+    protected static final String BLUE = "DARK_BLUE_THEME";
 
 
     protected static final String TUT = "TUTORIALS";
@@ -275,15 +281,15 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
 
     public void changeTheme(String t){
         if(t.equals(getResources().getString(R.string.themeR)))
-            theme = "RED_THEME";
+            theme = RED;
         else if(t.equals(getResources().getString(R.string.themeY)))
-            theme = "YELLOW_THEME";
+            theme = YELLOW;
         else if(t.equals(getResources().getString(R.string.themedB)))
-            theme = "DARK_BLUE_THEME";
+            theme = BLUE;
         else if(t.equals(getResources().getString(R.string.themeT)))
-            theme = "TEAL_THEME";
+            theme = TEAL;
         else if(t.equals(getResources().getString(R.string.themeBr)))
-            theme = "BROWN_THEME";
+            theme = BROWN;
         setThemeFile();
         recreate();
     }
