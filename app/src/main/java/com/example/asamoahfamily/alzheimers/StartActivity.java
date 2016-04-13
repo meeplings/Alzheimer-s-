@@ -142,23 +142,23 @@ public class StartActivity extends BaseAct {
 
         switch (id){
             case R.id.menuBr:
-                theme = "BROWN_THEME";
+                theme = BROWN;
                 themeChanged = true;
                 break;
             case R.id.menudB:
-                theme = "DARK_BLUE_THEME";
+                theme = BLUE;
                 themeChanged = true;
                 break;
             case R.id.menuY:
-                theme = "YELLOW_THEME";
+                theme = YELLOW;
                 themeChanged = true;
                 break;
             case R.id.menuT:
-                theme = "TEAL_THEME";
+                theme = TEAL;
                 themeChanged = true;
                 break;
             case R.id.menuR:
-                theme = "RED_THEME";
+                theme = RED;
                 themeChanged = true;
                 break;
             default:
