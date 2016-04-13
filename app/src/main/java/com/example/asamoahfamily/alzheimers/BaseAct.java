@@ -191,6 +191,7 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
                         changeTheme(((Button) v).getText().toString());
                     }
                 });
+                goBack.setVisibility(View.VISIBLE);
                 goBack.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
