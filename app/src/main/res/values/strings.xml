@@ -62,7 +62,7 @@
     <string name="listItemContentHint">Description</string>
 
 
-    <string name="title_activity_viewer">ViewerActivity</string>
+    <string name="title_activity_mem_game">Memory Game</string>
     <string name="title_activity_start">Welcome to Cactus</string>
     <string name="title_activity_task_description">ToDo Description</string>
     <string name="title_activity_nav">Nav Drawer</string>
@@ -87,5 +87,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="toThemeChooser">Theme Selector</string>
+
+    <string name="memGame">Play Memory Game</string>
+    <string name="start">START</string>
+    <string name="win">Congratulations! You Win!</string>
+    <string name="cardDesc">Click me to Flip!</string>
 
 </resources>

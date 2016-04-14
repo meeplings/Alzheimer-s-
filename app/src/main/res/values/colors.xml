@@ -8,8 +8,8 @@
     <color name="WarningOrangeRed">#ff4500</color>
     <color name="WarningRed">#aa0114</color>
 
-    <color name = "divideLight">#D3D3D3</color>
-    <color name = "divideDark">#3F3F3F</color>
+    <color name = "divideLight">#E2BC96</color>
+    <color name = "divideDark">#4A5056</color>
     <color name = "darkPrimeT">#212121</color>
     <color name = "lightPrimeT">#F9E6F0</color>
     <color name = "secondT">#727272</color>
@@ -26,7 +26,7 @@
 
 
     <color name = "rDark">#584A66</color>
-    <color name = "rPrime">#F44336</color>
+    <color name = "rPrime">#905294</color>
     <color name = "rLight">#D295BC</color>
 
     <color name = "rAccent">#96FFCF</color>
@@ -39,9 +39,9 @@
     <color name = "dBPrime">#607d8b</color>
     <color name = "dBLight">#CFD8DC</color>
 
-    <color name = "dbAccent">#009688</color>
+    <color name = "dbAccent">#BA9397</color>
     <color name = "dBAdj1">#9397B2</color>
-    <color name = "dBAdj2">#468461</color>
+    <color name = "dBAdj2">#4C8C86</color>
     <color name = "dbIcon">#FFFFFF</color>
 
 
@@ -55,7 +55,7 @@
     <color name = "tIcon">#FFFFFF</color>
 
 
-    <color name = "brDark">#5D4037</color>
+    <color name = "brDark">#7D665E</color>
     <color name = "brPrime">#795548</color>
     <color name = "brLight">#D7CCC8</color>
 

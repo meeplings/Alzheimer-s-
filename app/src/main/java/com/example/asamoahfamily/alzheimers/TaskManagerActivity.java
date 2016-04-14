@@ -28,23 +28,9 @@ public class TaskManagerActivity extends BaseAct {
         super.onCreate(savedInstanceState);
 
         screenTools();
-        setThemeFile();
-
-//        List<String> names = new ArrayList<>();
-//        List<String> tags = new ArrayList<>();
-//
-//        int x = 0;
-//        String counter = Integer.toString(x);
-//        while(mTasks.contains(counter)){
-//            names.add(mTasks.getString(counter,FAILED));
-//            Log.d(TAG,"BUTTON ADDED" + names.get(x));
-//            tags.add(mTasks.getString(Integer.toString(-x), FAILED));
-//            x++;
-//            counter = Integer.toString(x);
-//        }
-//
-//        for(int i = 0; i < names.size(); i++)
-//            newBut(names.get(i), Integer.parseInt(tags.get(i).substring(0, 1)));
+        if(getSharedPreferences(SHARE,MODE_PRIVATE).getString(THEME_FILE,null) != null)
+            theme = getSharedPreferences(SHARE,MODE_PRIVATE).getString(THEME_FILE,null);
+        updateTheme();
 
         buffer = Math.round(4* screenScale);
         ScrollView scrollView = (ScrollView) findViewById(R.id.menuScroller);

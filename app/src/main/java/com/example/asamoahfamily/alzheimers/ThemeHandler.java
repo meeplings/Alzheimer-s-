@@ -32,7 +32,7 @@ public class ThemeHandler {
 
         TEAL_THEME = new int[]{ContextCompat.getColor(c,R.color.tPrime), ContextCompat.getColor(c, R.color.tLight),
                 ContextCompat.getColor(c, R.color.tDark),ContextCompat.getColor(c, R.color.tAccent),
-                ContextCompat.getColor(c,R.color.divideDark),ContextCompat.getColor(c,R.color.darkPrimeT),
+                ContextCompat.getColor(c,R.color.divideLight),ContextCompat.getColor(c,R.color.darkPrimeT),
                 ContextCompat.getColor(c,R.color.tAdj1), ContextCompat.getColor(c,R.color.tAdj2)};
 
         DARK_BLUE_THEME = new int[]{ContextCompat.getColor(c,R.color.dBPrime), ContextCompat.getColor(c, R.color.dBLight),

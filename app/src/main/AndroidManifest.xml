@@ -26,10 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewerActivity"
-            android:label="@string/title_activity_viewer"
-            android:theme="@style/AppTheme"/>
-        <activity
             android:name=".TaskDescriptionActivity"
             android:label="@string/title_activity_task_description"
             android:parentActivityName=".TaskManagerActivity"
@@ -38,6 +34,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.asamoahfamily.alzheimers.TaskManagerActivity" />
         </activity>
+        <activity android:name=".MemoryActivity"
+            android:label="@string/title_activity_mem_game"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".StartActivity">
+        </activity>
+
     </application>
 
 </manifest>

@@ -30,7 +30,6 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
     protected Button red,blue,yellow,brown,teal,base;
 
     protected View bg,side,bot,back;
-    protected View snackView;
     protected DrawerLayout drawer;
     protected NavigationView navView;
     protected Button goBack;
@@ -74,30 +73,19 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
 
         setTheme(R.style.AppTheme);
 
-        snackView = findViewById(R.id.CoordinatorLayout);
         p = new Point();
         dm = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenScale = dm.density;
         cont = false;
 
+        showTutorial= getSharedPreferences(TUT,MODE_PRIVATE).getBoolean(ENABLED,true);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_task,menu);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    protected void setThemeFile(){
-        bg = findViewById(R.id.background);
-        side = findViewById(R.id.blockLeft);
-        back = findViewById(R.id.blockBack);
-        bot = findViewById(R.id.blockBot);
-
-        ThemeHandler.setBGC(bot, side, bg, back, toolbar);
-
-        snackView = bot;
     }
 
     protected boolean popup(String mess){
@@ -149,8 +137,8 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
             case R.id.navToManager:
                 toManager(item);
                 break;
-            case R.id.navToViewer:
-                toList(item);
+            case R.id.navToMem:
+                toMemGame(item);
                 break;
             case R.id.navToThemes:
                 setContentView(R.layout.background);
@@ -212,7 +200,6 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
                 SharedPreferences.Editor mEdits = getSharedPreferences(TUT,MODE_PRIVATE).edit();
                 mEdits.putBoolean(ENABLED,showTutorial);
                 mEdits.apply();
-
                 if(!showTutorial)
                     tutOn = "OFF";
                 Toast.makeText(this,"Tutorials are now " + tutOn, Toast.LENGTH_SHORT).show();
@@ -225,8 +212,8 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
         return true;
     }
 
-    public void toList(MenuItem m){
-        Intent i = new Intent(this,ViewerActivity.class);
+    public void toMemGame(MenuItem m){
+        Intent i = new Intent(this,MemoryActivity.class);
         startActivity(i);
         finish();
     }
@@ -275,7 +262,17 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
     public void updateTheme(){
         new ThemeHandler(this);
         ThemeHandler.setThemeCols(theme);
-        recreate();
+
+        bg = findViewById(R.id.background);
+        side = findViewById(R.id.blockLeft);
+        back = findViewById(R.id.blockBack);
+        bot = findViewById(R.id.blockBot);
+
+        ThemeHandler.setBGC(bot, side, bg, back, toolbar);
+
+        SharedPreferences.Editor newTheme = getSharedPreferences(SHARE,MODE_PRIVATE).edit();
+        newTheme.putString(THEME_FILE,theme);
+        newTheme.apply();
     }
 
 
@@ -290,7 +287,7 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
             theme = TEAL;
         else if(t.equals(getResources().getString(R.string.themeBr)))
             theme = BROWN;
-        setThemeFile();
+        updateTheme();
         recreate();
     }
 }

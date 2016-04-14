@@ -3,7 +3,6 @@ package com.example.asamoahfamily.alzheimers;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,9 +10,6 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,14 +27,13 @@ public class StartActivity extends BaseAct {
         pending = (GridLayout) findViewById(R.id.pendingTasks);
         done = (GridLayout) findViewById(R.id.finishedTasks);
         editorBut = (Button) findViewById(R.id.button);
+        screenTools();
         openTheme();
         openTasks();
 
-        screenTools();
 
         tutPopup("Welcome to Cactus!");
         tutPopup("To get started, first go to settings on the top bar");
-        setThemeFile();
     }
 
 
@@ -57,12 +52,6 @@ public class StartActivity extends BaseAct {
     public void toManager(View v) {
         Intent i = new Intent(this, TaskManagerActivity.class);
         i.putExtra(T_NAME, theme);
-        startActivity(i);
-        finish();
-    }
-
-    public void toList(View v){
-        Intent i = new Intent(this,ViewerActivity.class);
         startActivity(i);
         finish();
     }
@@ -90,32 +79,22 @@ public class StartActivity extends BaseAct {
     }
 
     private void openTheme(){
-        try{
-            FileInputStream mFile = openFileInput(THEME_FILE);
-            int counter;
-            String mData = "";
 
-            while ((counter = mFile.read()) !=-1){
-                mData+= Character.toString((char) counter);
-            }
-            theme = mData;
+        if(getSharedPreferences(SHARE,MODE_PRIVATE).getString(THEME_FILE,null) != null) {
+            theme = getSharedPreferences(SHARE, MODE_PRIVATE).getString(THEME_FILE, null);
             themeChanged = true;
-            Toast.makeText(this,them + " theme loaded",Toast.LENGTH_SHORT).show();
-            mFile.close();
-        } catch (IOException e){
-            Toast.makeText(this, "No theme selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,theme + " theme loaded",Toast.LENGTH_SHORT).show();
+            updateTheme();
         }
+        else
+            Toast.makeText(this, "No theme selected", Toast.LENGTH_SHORT).show();
     }
 
     public void updateTheme(){
-        new ThemeHandler(this);
-        ThemeHandler.setThemeCols(theme);
-
+        super.updateTheme();
         tutPopup("Now that you have changed the theme, you can start adding new tasks todo!");
-
         editorBut.setEnabled(true);
         editorBut.setBackgroundColor(ThemeHandler.getmPrime());
-        recreate();
     }
 
 
@@ -159,19 +138,8 @@ public class StartActivity extends BaseAct {
             //TODO: add default popup
         }
         if(themeChanged){
-            Toast.makeText(this,theme + " was saved!",Toast.LENGTH_SHORT).show();
-        }
-
-        try {
-            FileOutputStream toFile = openFileOutput(THEME_FILE, MODE_PRIVATE);
-            toFile.write(theme.getBytes());
-            toFile.close();
             updateTheme();
-            setThemeFile();
-            toFile.close();
-            Toast.makeText(this,R.string.saveSuccessful,Toast.LENGTH_SHORT).show();
-        }catch (IOException e){
-            Toast.makeText(this,R.string.saveFailed,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,theme + " was saved!",Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

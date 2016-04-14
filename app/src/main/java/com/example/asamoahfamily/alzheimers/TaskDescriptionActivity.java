@@ -34,8 +34,9 @@ public class TaskDescriptionActivity extends BaseAct {
         super.onCreate(savedInstanceState);
 
         screenTools();
-
-        setThemeFile();
+        if(getSharedPreferences(SHARE,MODE_PRIVATE).getString(THEME_FILE,null) != null)
+            theme = getSharedPreferences(SHARE,MODE_PRIVATE).getString(THEME_FILE,null);
+        updateTheme();
 
         Intent i = getIntent();
         type = i.getIntExtra("TASK_TYPE", 0);

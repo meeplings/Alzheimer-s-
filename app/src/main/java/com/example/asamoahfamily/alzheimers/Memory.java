@@ -1,121 +1,182 @@
-
 package com.example.asamoahfamily.alzheimers;
-import java.util.ArrayList;
-import java.util.List;
+
+
+import android.os.Handler;
+import android.widget.ImageButton;
+
 import java.util.Random;
+/**
+ * Created by Jared on 3/14/2016.
+ */
+public class Memory  {
+    static Card[][] board;
+    static ImageButton[][] imageBoard ;
+    static int move;
+    public MemoryActivity thing;
+    public final static int[] images = {R.drawable.c01, R.drawable.d01, R.drawable.h01, R.drawable.s01,R.drawable.c13, R.drawable.d13, R.drawable.h13, R.drawable.s13};
+    //difficulty will determine the amount of copies of each card
+    public void startGame(ImageButton[][] imageBoard,MemoryActivity a){
+        thing=a;
 
-
-public class Memory {
-
-    /* CARD ORDER (ALPHABETICAL)
-    0 - Clubs
-    1 - Diamonds
-    2 - Hearts
-    3 - Spades
-     */
-
-    private int cards[];
-
-    public Memory(String difficulty){
+        this.imageBoard=imageBoard;
+        int x=imageBoard.length;
+        int y=imageBoard[0].length;
+        board=new Card[y][x];
         Random rand = new Random();
-        List<Integer> suits = new ArrayList<>();
-        suits.add(0);   suits.add(1);
-        suits.add(2);   suits.add(3);
-        switch (difficulty){
-            case "EASY":
-                cards = new int[13];
-                cards = cardToSuit(cards,rand.nextInt(4));
-                break;
-            case "MEDIUM":
-                int[] mSuit = new int[2];
-                int[] m1 = new int[13];     int[] m2 = new int[13];
-                cards = new int[26];
-                for(int i = 0; i < mSuit.length; i++){
-                    int x = suits.get(rand.nextInt(suits.size()));
-                    suits.remove(x);
-                    mSuit[i] = x;
-                }
-                m1 = cardToSuit(m1,mSuit[0]);   m2 = cardToSuit(m2,mSuit[1]);
-                for(int i =0; i < 13; i ++) {
-                    cards[i] = m1[i];
-                    cards[i+13] = m2[i];
-                }
-                break;
-            case "HARD":
-                int[] hSuit = new int[4];
-                int[] h1 = new int[13];     int[] h2 = new int[13];
-                int[] h3 = new int[13];     int[] h4 = new int[13];
-                cards = new int[52];
-                for(int i = 0; i < hSuit.length; i++){
-                    int x = suits.get(rand.nextInt(suits.size()));
-                    suits.remove(x);
-                    hSuit[i] = x;
-                }
-                h1 = cardToSuit(h1,hSuit[0]);   h2 = cardToSuit(h2,hSuit[1]);
-                h3 = cardToSuit(h3,hSuit[2]);   h4 = cardToSuit(h4,hSuit[3]);
-                for(int i =0; i < 13; i ++) {
-                    cards[i] = h1[i];
-                    cards[i+13] = h2[i];
-                    cards[i+26] = h3[i];
-                    cards[i+39] = h4[i];
-                }
+        int numCards=(x*y)/2;
 
+        for(int i=0;i<numCards;i++){
+            for(int card=0;card<2;card++) {
+                boolean setCard=false;
+                while(!setCard) {
+                    int checkX = rand.nextInt(x);
+                    int checkY = rand.nextInt(y);
+                    if (board[checkY][checkX]==null) {
+                        board[checkY][checkX] = new Card(i);
+                        setCard=true;
+                    }
+                }
+            }
+        }
+        move=0;
+        for(int y1=0;y1<4;y1++){
+            for(int x1=0;x1<4;x1++){
+                imageBoard[y1][x1].setBackgroundResource(R.drawable.back);
+            }
         }
     }
+    public void printBoard(){
+    	//will be replaced with graphics stuff
+        for(int x=0;x<board.length;x++){
+            for(int y=0;y<board[0].length;y++){
 
-    private Cards[][] board;
-    private int xdim;
-    private int ydim;
-    // Difficulty now for number of suits
-//    public void startGame(int x, int y, int difficulty){
-//        board=new Cards[x][y];
-//        Random rand = new Random();
-//        int numCards=(x*y)/difficulty;
-//
-//        for(int i=0;i<numCards;i++){
-//            for(int card=0;card<difficulty;card++) {
-//                boolean setCard=false;
-//                while(!setCard) {
-//                    int checkX = rand.nextInt(x);
-//                    int checkY = rand.nextInt(y);
-//                    if (board[checkX][checkY] == 0) {
-//                        board[checkX][checkY] = i + 1;
-//                        setCard=true;
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-    protected boolean checkTime(){
-        return false;
+                board[x][y].displayCard();
+            }
+            System.out.println();
+        }
     }
+    static int[] checkedCards;
+    static int[] checkedCards2;
+    static int checkedVal;
+    public void makeMoves(int x, int y){
 
-    private int[] cardToSuit(int[] cards, int x){
-        int startID;
-        switch (x){
-            case 0:
-                startID = R.drawable.c01;
-                break;
-            case 1:
-                startID = R.drawable.d01;
-                break;
-            case 2:
-                startID = R.drawable.h01;
-                break;
-            case 3:
-                startID = R.drawable.s01;
-                break;
-            default:
-                throw new IllegalArgumentException("INVALID ID TYPE");
+        if(move%2==0) {
+            checkedCards = new int[2];
+            checkedCards2 = new int[2];
+            checkedCards[0]=y;
+            checkedCards[1]=x;
+            checkedVal=board[y][x].getVal();
+           // board[y][x].setShowing(true);
+            imageBoard[y][x].setBackgroundResource(images[board[y][x].getVal()]);
+            imageBoard[y][x].setEnabled(false);
+            move++;
 
         }
-        for(int i =0; i< cards.length; i++){
-            cards[i] = startID;
-            startID++;
+        else if(move%2==1){
+            //board[y][x].setShowing(true);
+            checkedCards2[0]=y;
+            checkedCards2[1]=x;
+            imageBoard[y][x].setBackgroundResource(images[board[y][x].getVal()]);
+            imageBoard[y][x].setEnabled(false);
+            move=-1;
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(board[checkedCards2[0]][checkedCards2[1]].getVal()==checkedVal){
+                        imageBoard[checkedCards2[0]][checkedCards2[1]].setBackgroundResource(R.drawable.blank);
+                        imageBoard[checkedCards[0]][checkedCards[1]].setBackgroundResource(R.drawable.blank);
+
+                        board[checkedCards2[0]][checkedCards2[1]].setVal(-1);
+                        board[checkedCards[0]][checkedCards[1]].setVal(-1);
+                    }
+                    else{
+                        imageBoard[checkedCards[0]][checkedCards[1]].setEnabled(true);
+                        imageBoard[checkedCards2[0]][checkedCards2[1]].setEnabled(true);
+                        imageBoard[checkedCards[0]][checkedCards[1]].setBackgroundResource(R.drawable.back);
+                        imageBoard[checkedCards2[0]][checkedCards2[1]].setBackgroundResource(R.drawable.back);
+
+                    }
+                    move++;
+                    if(getWin()){
+
+
+                        thing.Win();
+
+
+                    }
+
+                    }
+
+            }, 500);
+
+
         }
-        return cards;
+    	/*Point[] checkedCards=new Point[difficulty];
+    	boolean badMove=false;
+    	int checkedVal=-1;
+    	for(int i=0;i<2;i++){
+            int[] p = makePointInput();
+    		//Point p=makePointInput();
+
+    		board[p[0]][p[1]].setShowing(true);
+    		checkedVal=board[p[0]][p[0]].getVal();
+    		for(int num=0;num<i;num++){
+    			if(board[checkedCards[num][0]][checkedCards[num][0]].getVal()!=checkedVal)
+    				badMove=true;
+    		}
+
+    		checkedCards[i]=p;
+    		printBoard();
+    	}
+
+    	if(!badMove){
+    		for(int[] p:checkedCards){
+    			board[p[0]][p[1]].setVal(-1);
+    		}
+    	}
+    	else{
+    		for(int[] p:checkedCards){
+    			board[p[0]][p[1]].setShowing(false);;
+    		}
+    	}
+    	*/
+    	
+    }
+    /*public int[] makePointInput(int x, int y){
+    	//will be replaced with graphics
+    	Scanner scan=new Scanner(System.in);
+    	System.out.println("Insert coordinate x");
+    	int x=scan.nextInt();
+    	System.out.println("Insert coordinate y");
+    	int y=scan.nextInt();
+    	return new int[]{x,y};
+    }
+    */
+    public boolean getWin(){
+    	 for(int x=0;x<board.length;x++){
+             for(int y=0;y<board[0].length;y++){
+
+                 if(board[x][y].getVal()!=-1)
+                	 return false;
+             }
+             
+         }
+    	 return true;
     }
 
+
+
+    /*
+    public void run(){
+    	while(!getWin()){
+    		makeMoves();
+    		printBoard();
+    	}
+    	//Will be replaced with graphics
+    	System.out.println("You Win");
+    }
+    */
+    
 
 }

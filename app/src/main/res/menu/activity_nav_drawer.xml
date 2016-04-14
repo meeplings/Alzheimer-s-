@@ -9,9 +9,8 @@
             android:title="@string/toTaskManager"
             android:id="@+id/navToManager" />
         <item
-            android:title="@string/toTaskViewer"
-            android:id="@+id/navToViewer"
-            android:enabled="false"/>
+            android:title="@string/memGame"
+            android:id="@+id/navToMem"/>
     </group>
     
     <group android:id= "@+id/appSettings">
