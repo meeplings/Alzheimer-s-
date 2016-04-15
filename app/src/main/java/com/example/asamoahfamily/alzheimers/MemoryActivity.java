@@ -16,6 +16,8 @@ public class MemoryActivity extends BaseAct {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_memory);
         super.onCreate(savedInstanceState);
+        
+        screenTools();
 
         buttons[0][0] = (ImageButton) findViewById(R.id.button6);
         buttons[0][1] = (ImageButton) findViewById(R.id.button7);
