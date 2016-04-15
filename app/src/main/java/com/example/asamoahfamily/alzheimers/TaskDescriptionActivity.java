@@ -1,19 +1,23 @@
 package com.example.asamoahfamily.alzheimers;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.HashSet;
@@ -25,13 +29,17 @@ public class TaskDescriptionActivity extends BaseAct {
     private Tasks mTask;
     private TextView prioText;
 
-    private SharedPreferences allSettings;
-
-    private int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_task_description);
         super.onCreate(savedInstanceState);
+
+        mTask = new Tasks(Tasks.NONE,"---");
+
+        LinearLayout bot = (LinearLayout) findViewById(R.id.botbar);
+        assert bot!=null;
+        bot.setBackgroundColor(ThemeHandler.getmDark());
+
 
         screenTools();
         if(getSharedPreferences(SHARE,MODE_PRIVATE).getString(THEME_FILE,null) != null)
@@ -39,26 +47,9 @@ public class TaskDescriptionActivity extends BaseAct {
         updateTheme();
 
         Intent i = getIntent();
-        type = i.getIntExtra("TASK_TYPE", 0);
         String name = i.getStringExtra("TASK_NAME");
 
-        switch (type){
-            case 1:
-                mTask = new Medicine(0,name);
-                break;
-            case 2:
-                mTask = new Food(0,name, 0);
-                break;
-            case 3:
-                mTask = new Recreation(0,name,0);
-                break;
-            default:
-                throw new RuntimeException("NO TYPE DETECTED");
-        }
-
         int buffer =  Math.round(6*screenScale);
-
-        allSettings=getApplicationContext().getSharedPreferences(SHARE,0);
 
         prioText = (TextView) findViewById(R.id.taskPrio);
         final TextView nameText = (TextView) findViewById(R.id.taskName);
@@ -66,22 +57,58 @@ public class TaskDescriptionActivity extends BaseAct {
         if(!name.equals(""))
             nameText.setText(name);
         final EditText inputName = (EditText) findViewById(R.id.nameInput);
-        if(inputName !=null)
+        assert inputName!=null;
             inputName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     String taskName = v.getText().toString();
                     TaskDescriptionActivity.this.
                             mTask.setName(taskName);
-                    nameText.append("\n" + taskName);
+                    nameText.setText(taskName);
                     v.setBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.WarningGreen));
-//                        Toast.makeText(getBaseContext(), "COULDN'T READ DOSAGE", Toast.LENGTH_SHORT).show();
-//                        v.setBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.WarningRed));
+                    v.setEnabled(false);
                     v.setText("");
                     hideKeyboard(v);
                 return true;
                 }
             });
+
+        final Button frequency = (Button) findViewById(R.id.frequency);
+        assert frequency!=null;
+        frequency.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog mFreq = new DatePickerDialog(TaskDescriptionActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        mTask.setDay(dayOfMonth);
+                        mTask.setMonth(monthOfYear);
+                        mTask.setYear(year);
+                        frequency.append("\nTotal hours until Reset: " + Math.round(TaskDescriptionActivity.this.mTask.getDay()*24));
+                    }
+                },0,0,0);
+            mFreq.show();
+            }
+        });
+
+        final Button time = (Button) findViewById(R.id.time);
+        assert time!=null;
+        time.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final TimePickerDialog mTime = new TimePickerDialog(
+                        TaskDescriptionActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        mTask.setHour(hourOfDay);
+                        mTask.setMinute(minute);
+                        time.append("\nHours: " + TaskDescriptionActivity.this.mTask.getHour() +
+                        "\nMinutes: " + TaskDescriptionActivity.this.mTask.getMinute());
+                    }
+                },0,0,true);
+                mTime.show();
+            }
+        });
 
         TableRow.LayoutParams rowLP = new TableRow.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
@@ -147,33 +174,33 @@ public class TaskDescriptionActivity extends BaseAct {
     }
 
     public void close(View v){
-        SharedPreferences.Editor mEdits = allSettings.edit();
+        SharedPreferences.Editor mEdits = getApplicationContext().getSharedPreferences(SHARE,0).edit();
         mEdits.clear();
         mEdits.apply();
         recreate();
     }
 
     private void saveData(){
-        SharedPreferences.Editor mEdits = allSettings.edit();
-        Set<String> butnames = allSettings.getStringSet(ALL_BUTS, new HashSet<String>());
+
+        String timeFormat = mTask.getHour()+"_"+mTask.getMinute();
+        String dateFormat = mTask.getMonth()+"_"+mTask.getDay()+"_"+mTask.getYear();
+
+        SharedPreferences.Editor mEdits = getApplicationContext().getSharedPreferences(SHARE,0).edit();
+        Set<String> butnames = getApplicationContext().getSharedPreferences(SHARE,0).getStringSet(ALL_BUTS, new HashSet<String>());
         mEdits.remove(ALL_BUTS);
         butnames.add(mTask.getName());
+
+        mEdits.putString(mTask.getName().concat(TIME),timeFormat);
+        mEdits.putString(mTask.getName().concat(FREQ),dateFormat);
+        mEdits.putInt(mTask.getName().concat(PRIO), mTask.getPrio());
+
         mEdits.putStringSet(ALL_BUTS, butnames);
-        mEdits.putInt(mTask.getName().concat("_TYPE"), type);
-        mEdits.putInt(mTask.getName().concat("_PRIO"), mTask.getPrio());
-        //mEdits.putFloat(TIME, (float) time);
         mEdits.apply();
-        Log.d(TAG,mTask.getName()+"||"+allSettings.getString(mTask.getName(),FAILED));
-        if(allSettings.getString(mTask.getName(),FAILED).equals(mTask.getName()))
+        if(getApplicationContext().getSharedPreferences(SHARE,0).getString(mTask.getName(),FAILED).equals(mTask.getName()))
             Toast.makeText(this, R.string.saveFailed, Toast.LENGTH_LONG).show();
         else
             Toast.makeText(this, R.string.saveSuccessful, Toast.LENGTH_LONG).show();
 
     }
 
-    @Override
-    protected void onPause() {
-        if(popup("Are you sure you want to exit?"))
-            super.onPause();
-    }
 }

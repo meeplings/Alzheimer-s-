@@ -3,6 +3,7 @@ package com.example.asamoahfamily.alzheimers;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.GridLayout;
 import android.widget.Toast;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 public class StartActivity extends BaseAct {
 
@@ -36,14 +39,6 @@ public class StartActivity extends BaseAct {
         tutPopup("To get started, first go to settings on the top bar");
     }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.getMenuInflater().inflate(R.menu.menu_task, menu);
-//        return true;
-//    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
@@ -57,23 +52,55 @@ public class StartActivity extends BaseAct {
     }
 
     private void openTasks(){
-        SharedPreferences allSettings = getSharedPreferences(SHARE, 0);
+        SharedPreferences allSettings = getApplicationContext().getSharedPreferences(SHARE, 0);
         Set<String> todo = allSettings.getStringSet(ALL_BUTS,new HashSet<String>());
         for (String aTodo : todo) {
+            final boolean isDone = false;
             Button b = new Button(this);
+            b.setBackgroundColor(ContextCompat.getColor(this,R.color.WarningRed));
             b.setText(aTodo);
-            final int prio = allSettings.getInt(aTodo.concat("_PRIO"), 0);
+            final int prio = allSettings.getInt(aTodo.concat(PRIO), 0);
+            StringTokenizer mTime = new StringTokenizer(
+                    allSettings.getString(aTodo.concat(TIME),""),"_"
+            );
+            try {
+                final String time = mTime.nextToken() + ":" + mTime.nextToken();
+                StringTokenizer mDate = new StringTokenizer(
+                        allSettings.getString(aTodo.concat(FREQ), ""), "_"
+
+                );
+                final String date = mDate.nextToken() + "/" + mDate.nextToken() + "/" + mDate.nextToken();
+
+                b.setOnLongClickListener(new Button.OnLongClickListener(){
+                    @Override
+                    public boolean onLongClick(View v) {
+                        popup("Time for task: " + time +
+                        "\nFrequency of reminders: " + date +
+                        "\n Status: " + isDone +
+                        "\n Priority: " + prio);
+                        return false;
+                    }
+                });
+            }catch (NoSuchElementException e){
+                Toast.makeText(this,"NOT SET UP PROPERLY",Toast.LENGTH_SHORT).show();
+            }
             b.setOnClickListener(new Button.OnClickListener(){
                 public void onClick(View v){
-                    if(prio!=0) {
-                        v.setBackgroundColor(ThemeHandler.getmLight());
+                    if(v.getParent() == pending) {
+                        v.setBackgroundColor(ContextCompat.getColor(StartActivity.this,R.color.WarningGreen));
                         ((GridLayout )v.getParent()).removeView(v);
                         done.addView(v);
-                    }else
-                        Toast.makeText(getBaseContext(),"TASK NOT DONE",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),R.string.done,Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getBaseContext(), R.string.notDone, Toast.LENGTH_SHORT).show();
+                        v.setBackgroundColor(ContextCompat.getColor(StartActivity.this, R.color.WarningRed));
+                        ((GridLayout) v.getParent()).removeView(v);
+                        pending.addView(v);
+                    }
                     }
                  }
             );
+
             pending.addView(b);
         }
     }

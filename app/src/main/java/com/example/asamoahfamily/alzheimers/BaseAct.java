@@ -40,6 +40,7 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
     boolean cont;
 
     protected static final String TAG = "xxyyzz";
+    private SharedPreferences allSettings;
 
     protected static final String THEME_FILE = "tData";
     protected static final String FAILED = "FAILED";
@@ -55,14 +56,14 @@ public class BaseAct extends AppCompatActivity  implements NavigationView.OnNavi
     protected static final String ENABLED = "ENABLE";
     protected static final String SHARE = "QQQ";
 
-    protected static final String ALL_BUTS = "AllOfTheButs";
+    protected static final String PRIO = "_PRIO";
+    protected static final String TIME = "_TIME";
+    protected static final String FREQ = "_FREQ";
 
-    protected static final String MEDICINE = "MEDICINE";
-    protected static final String FOOD = "FOOD";
-    protected static final String RECREATION = "RECREATION";
-    protected static final int MED_TAG = 1;
-    protected static final int FOOD_TAG =2;
-    protected static final int REC_TAG = 3;
+
+
+
+    protected static final String ALL_BUTS = "AllOfTheButs";
 
 
     protected static final String T_NAME = "THEME_NAME";

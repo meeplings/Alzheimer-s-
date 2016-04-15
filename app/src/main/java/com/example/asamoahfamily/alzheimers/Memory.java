@@ -5,9 +5,7 @@ import android.os.Handler;
 import android.widget.ImageButton;
 
 import java.util.Random;
-/**
- * Created by Jared on 3/14/2016.
- */
+
 public class Memory  {
     static Card[][] board;
     static ImageButton[][] imageBoard ;
@@ -45,19 +43,12 @@ public class Memory  {
             }
         }
     }
-    public void printBoard(){
-    	//will be replaced with graphics stuff
-        for(int x=0;x<board.length;x++){
-            for(int y=0;y<board[0].length;y++){
 
-                board[x][y].displayCard();
-            }
-            System.out.println();
-        }
-    }
     static int[] checkedCards;
     static int[] checkedCards2;
     static int checkedVal;
+
+
     public void makeMoves(int x, int y){
 
         if(move%2==0) {
@@ -66,14 +57,12 @@ public class Memory  {
             checkedCards[0]=y;
             checkedCards[1]=x;
             checkedVal=board[y][x].getVal();
-           // board[y][x].setShowing(true);
             imageBoard[y][x].setBackgroundResource(images[board[y][x].getVal()]);
             imageBoard[y][x].setEnabled(false);
             move++;
 
         }
         else if(move%2==1){
-            //board[y][x].setShowing(true);
             checkedCards2[0]=y;
             checkedCards2[1]=x;
             imageBoard[y][x].setBackgroundResource(images[board[y][x].getVal()]);
@@ -99,60 +88,15 @@ public class Memory  {
                     }
                     move++;
                     if(getWin()){
-
-
                         thing.Win();
-
-
                     }
 
                     }
-
             }, 500);
 
-
         }
-    	/*Point[] checkedCards=new Point[difficulty];
-    	boolean badMove=false;
-    	int checkedVal=-1;
-    	for(int i=0;i<2;i++){
-            int[] p = makePointInput();
-    		//Point p=makePointInput();
-
-    		board[p[0]][p[1]].setShowing(true);
-    		checkedVal=board[p[0]][p[0]].getVal();
-    		for(int num=0;num<i;num++){
-    			if(board[checkedCards[num][0]][checkedCards[num][0]].getVal()!=checkedVal)
-    				badMove=true;
-    		}
-
-    		checkedCards[i]=p;
-    		printBoard();
-    	}
-
-    	if(!badMove){
-    		for(int[] p:checkedCards){
-    			board[p[0]][p[1]].setVal(-1);
-    		}
-    	}
-    	else{
-    		for(int[] p:checkedCards){
-    			board[p[0]][p[1]].setShowing(false);;
-    		}
-    	}
-    	*/
-    	
     }
-    /*public int[] makePointInput(int x, int y){
-    	//will be replaced with graphics
-    	Scanner scan=new Scanner(System.in);
-    	System.out.println("Insert coordinate x");
-    	int x=scan.nextInt();
-    	System.out.println("Insert coordinate y");
-    	int y=scan.nextInt();
-    	return new int[]{x,y};
-    }
-    */
+
     public boolean getWin(){
     	 for(int x=0;x<board.length;x++){
              for(int y=0;y<board[0].length;y++){
@@ -160,7 +104,6 @@ public class Memory  {
                  if(board[x][y].getVal()!=-1)
                 	 return false;
              }
-             
          }
     	 return true;
     }

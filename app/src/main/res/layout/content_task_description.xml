@@ -9,8 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.asamoahfamily.alzheimers.TaskDescriptionActivity"
-    tools:showIn="@layout/activity_task_description">
+    tools:context="com.example.asamoahfamily.alzheimers.TaskDescriptionActivity">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -24,17 +23,20 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/listName"
-                android:id="@+id/taskName" />
+                android:id="@+id/taskName"
+                android:layout_gravity="center" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/nameInput"
-                android:hint="@string/listItemName" />
+                android:hint="@string/listItemName"
+                android:layout_gravity="center"
+                android:layout_column="2" />
         </TableRow>
 
         <TableRow
@@ -47,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/listPrio"
-                android:id="@+id/taskPrio" />
+                android:id="@+id/taskPrio"
+                android:layout_gravity="center" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -55,39 +58,74 @@
                 android:text="@string/none"
                 android:id="@+id/PrioAlert"
                 android:background="#f2faed"
-                android:onClick="changePrio" />
+                android:onClick="changePrio"
+                android:layout_gravity="center"
+                android:layout_column="2" />
         </TableRow>
-    </TableLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/frequency"
+                android:text="@string/frequency"
+                android:layout_gravity="center" />
+
+        </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time"
+                    android:text="@string/time"
+                    android:layout_gravity="center" />
+
+            </TableRow>
+
+        </TableLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/botbar">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear Changes"
+            android:text="@string/clear"
             android:onClick="clear"
             android:id="@+id/button2"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            style="?android:attr/buttonBarButtonStyle"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Commit Changes"
+            android:text="@string/commit"
             android:onClick="commit"
             android:id="@+id/button3"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            style="?android:attr/buttonBarButtonStyle"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GoTo Task"
+            android:text="@string/reset"
             android:onClick="close"
             android:id="@+id/button4"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
+
 </RelativeLayout>

@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".TaskManagerActivity"
-    tools:showIn="@layout/activity_task_manager"
     android:id="@+id/taskLayout">
 
     <LinearLayout
@@ -23,26 +22,11 @@
         android:layout_alignParentEnd="true">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/food"
-            android:id="@+id/fragFood"
-            android:onClick="addTask" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/medicine"
-            android:id="@+id/fragMed"
-            android:onClick="addTask" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rec"
-            android:id="@+id/fragRec"
-            android:onClick="addTask" />
-    </LinearLayout>
+            android:text="@string/taskInput"
+            android:onClick="createButton" />
+</LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

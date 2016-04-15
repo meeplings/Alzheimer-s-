@@ -8,9 +8,7 @@
     <string name="lunch">LUNCH</string>
     <string name="dinner">DINNER</string>
 
-    <string name="medicine">MEDICINE</string>
-    <string name="food">FOOD</string>
-    <string name="rec">RECREATION</string>
+    <string name="taskInput">Input a task</string>
 
 
     <string name="taskInstructionText">Click One Of the Above Buttons To Setup The Task Manager</string>
@@ -25,7 +23,9 @@
     <string name="scrollDown">DOWN</string>
 
     <string name="doneBut">Done</string>
+    <string name="done">Task Finished</string>
     <string name="pendingBut">Pending</string>
+    <string name="notDone">Task not yet finished</string>
 
     <string name="toSettings">Please select a color scheme before continuing</string>
     <string name="disableTutorial">Go to settings to disable tutorial popups</string>
@@ -59,8 +59,14 @@
 
 
     <string name="listItemName">Type name here:</string>
+    <string name="invalid">INVALID INPUT</string>
     <string name="listItemContentHint">Description</string>
+    <string name="frequency">Input how often to be reminded</string>
+    <string name="time">Input when to be reminded</string>
 
+    <string name="clear">Clear Changes</string>
+    <string name="commit">Commit Changes</string>
+    <string name="reset">Reset All Data</string>
 
     <string name="title_activity_mem_game">Memory Game</string>
     <string name="title_activity_start">Welcome to Cactus</string>
@@ -81,6 +87,7 @@
     <string name="cactus">Convoluted Beauty</string>
     <string name="home">To Home Screen</string>
     <string name="settings">Settings…</string>
+    <string name="finish"> Are you sure you want to exit?</string>
     <string name="navArrow">Go To…</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -90,7 +97,6 @@
 
     <string name="memGame">Play Memory Game</string>
     <string name="start">START</string>
-    <string name="win">Congratulations! You Win!</string>
+    <string name="win">Congratulations! You finished in: </string>
     <string name="cardDesc">Click me to Flip!</string>
-
 </resources>

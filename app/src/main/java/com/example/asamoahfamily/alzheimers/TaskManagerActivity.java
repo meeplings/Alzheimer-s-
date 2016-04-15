@@ -1,12 +1,15 @@
 package com.example.asamoahfamily.alzheimers;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -48,22 +51,54 @@ public class TaskManagerActivity extends BaseAct {
         SharedPreferences mTasks = getApplicationContext().getSharedPreferences(SHARE, 0);
         Set<String> newNames = mTasks.getStringSet(ALL_BUTS, new HashSet<String>());
         for (String n : newNames)
-            newBut(n, mTasks.getInt(n, 0));
+            newBut(n, false);
 
         if(table.getChildCount() == 0) {
-            newBut("BREAKFAST", FOOD_TAG);
-            newBut("LUNCH", FOOD_TAG);
-            newBut("DINNER", FOOD_TAG);
-            newBut("VITAMINS", MED_TAG);
+            newBut("BREAKFAST",false);
+            newBut("LUNCH",false);
+            newBut("DINNER",false);
+            newBut("VITAMINS",false);
             //Toast.makeText(this,R.string.loadFailed,Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void newBut(final String t, final int type) {
+    public void createButton(View v){
+        newBut(((Button) v) .getText().toString(),true);
+    }
+
+    private void newBut(final String t, boolean recent) {
 
         final Button newBut = new Button(this);
-        newBut.setText(t);
-        newBut.setTag(type + "_" + t);
+
+        if(recent) {
+
+            final AlertDialog.Builder mDialog = new AlertDialog.Builder(this);
+            mDialog.setCancelable(true);
+            final EditText name = new EditText(this);
+            mDialog.setView(name);
+            mDialog.setPositiveButton(R.string.cancel,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            mDialog.setNegativeButton(R.string.cont, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(!name.getText().toString().equals("")) {
+                        newBut.setText(name.getText().toString());
+                        dialog.dismiss();
+                    }
+                }
+            });
+            mDialog.setMessage(R.string.taskInput);
+            AlertDialog popup = mDialog.create();
+            popup.show();
+        } else
+            newBut.setText(t);
+
+
         final int id = idCounter;
         idCounter++;
         newBut.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +107,6 @@ public class TaskManagerActivity extends BaseAct {
                 if(v.isPressed())
                      v.setBackgroundColor(ThemeHandler.getmAcc());
                 Intent i = new Intent(getBaseContext(),TaskDescriptionActivity.class);
-                i.putExtra("TASK_TYPE",type);
                 i.putExtra("TASK_NAME",((Button) v).getText().toString());
                 startActivity(i);
                 finish();
@@ -116,39 +150,5 @@ public class TaskManagerActivity extends BaseAct {
         table.addView(nr);
     }
 
-    public void addTask(View v){
-        int key;
-        String type = ((Button) v).getText().toString();
-        switch (type) {
-            case MEDICINE:
-                key = MED_TAG;
-                break;
-            case RECREATION:
-                key = REC_TAG;
-                break;
-            case FOOD:
-                key = FOOD_TAG;
-                break;
-            default:
-                throw new IllegalArgumentException("NO TYPE DETECTED");
-        }
-        newBut(type,key);
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-//        SharedPreferences.Editor mEdits = getSharedPreferences(SHARE,0).edit();
-//        for(int i = 0; i < table.getChildCount(); i++){
-//            View v =  table.getChildAt(i);
-//            if(v instanceof Button) {
-//                Log.d(TAG,Integer.toString(i));
-//                mEdits.putString(Integer.toString(i), ((Button) v).getText().toString());
-//                mEdits.putString(Integer.toString(-i), v.getTag().toString());
-//            }
-//        }
-//        Toast.makeText(this, R.string.loadSuccessful, Toast.LENGTH_SHORT).show();
-//        mEdits.apply();
-    }
 }
