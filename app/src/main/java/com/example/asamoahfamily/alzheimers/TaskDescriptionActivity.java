@@ -78,16 +78,34 @@ public class TaskDescriptionActivity extends BaseAct {
         frequency.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                DatePickerDialog mFreq = new DatePickerDialog(TaskDescriptionActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        mTask.setDay(dayOfMonth);
-                        mTask.setMonth(monthOfYear);
-                        mTask.setYear(year);
-                        frequency.append("\nTotal hours until Reset: " + Math.round(TaskDescriptionActivity.this.mTask.getDay()*24));
+               AlertDialog.Builder mDialog = new AlertDialog.Builder(TaskDescriptionActivity.this);
+               EditText t = new EditText(TaskDescriptionActivity.this);
+               String[] f = {"Hours","Days","Weeks","Months"};
+               mDialog.setView(t);
+               mDialog.setSingleChoiceItems(f, new DialogInterface.OnSingleChoiceListener(){
+                   @Override
+                   public void onClick(DialogInterface i, int w, boolean isChecked){
+                       TaskDescriptionActivity.this.mTasks.setMark(f[i]);
+                       }
+               }
+               });
+                mDialog.setPositiveButton(R.string.cancel,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            TaskDescriptionActivity.this.mTasks.setMark("");
+                            dialog.dismiss();
+                        }
+                    });
+            mDialog.setNegativeButton(R.string.cont, 
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                        TaskDescriptionActivity.this.mTasks.setTime(Float.parseFloat(t.getText().toString()));
+                        dialog.dismiss();
                     }
-                },0,0,0);
-            mFreq.show();
+                }
+            });
             }
         });
 
@@ -183,7 +201,7 @@ public class TaskDescriptionActivity extends BaseAct {
     private void saveData(){
 
         String timeFormat = mTask.getHour()+"_"+mTask.getMinute();
-        String dateFormat = mTask.getMonth()+"_"+mTask.getDay()+"_"+mTask.getYear();
+        String dateFormat = mTask.getTime()+"_"+mTask.getMark();
 
         SharedPreferences.Editor mEdits = getApplicationContext().getSharedPreferences(SHARE,0).edit();
         Set<String> butnames = getApplicationContext().getSharedPreferences(SHARE,0).getStringSet(ALL_BUTS, new HashSet<String>());
