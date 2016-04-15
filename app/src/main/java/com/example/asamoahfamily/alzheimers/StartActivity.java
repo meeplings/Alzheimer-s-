@@ -26,15 +26,24 @@ public class StartActivity extends BaseAct {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_start);
         super.onCreate(savedInstanceState);
-
-        pending = (GridLayout) findViewById(R.id.pendingTasks);
-        done = (GridLayout) findViewById(R.id.finishedTasks);
-        editorBut = (Button) findViewById(R.id.button);
         screenTools();
         openTheme();
         openTasks();
 
-
+        pending = (GridLayout) findViewById(R.id.pendingTasks);
+        pending.setBackgroundColor(ThemeHandler.getmDark());
+        done = (GridLayout) findViewById(R.id.finishedTasks);
+        done.setBackgroundColor(ThemeHandler.getmLight());
+        editorBut = (Button) findViewById(R.id.button);
+        Button m = (Button) findViewById(R.id.startM);
+        m.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                Intent i = new Intent(StartActivity.this,MemoryActivity.class);
+                startIntent(i);
+                finish();
+            }
+        });
+        m.setBackgroundColor(ThemeHandler.getmAdj2());
         tutPopup("Welcome to Cactus!");
         tutPopup("To get started, first go to settings on the top bar");
     }
