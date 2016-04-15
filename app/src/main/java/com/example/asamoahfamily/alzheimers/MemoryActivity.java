@@ -18,6 +18,14 @@ public class MemoryActivity extends BaseAct {
         super.onCreate(savedInstanceState);
         
         screenTools();
+        
+        SharedPreferences mSettings = getSharedPreferences(SHARE,0);
+        SharedPreferences.Editor mEdits = mSettings.edit;
+        int x = mSettings.getInt("count",0);
+        x++;
+        mEdits.removeInt("count");
+        mEdits.putInt("count",x);
+        mEdits.commit();
 
         buttons[0][0] = (ImageButton) findViewById(R.id.button6);
         buttons[0][1] = (ImageButton) findViewById(R.id.button7);
