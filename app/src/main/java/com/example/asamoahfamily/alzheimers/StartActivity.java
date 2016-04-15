@@ -44,6 +44,11 @@ public class StartActivity extends BaseAct {
             }
         });
         m.setBackgroundColor(ThemeHandler.getmAdj2());
+        m.setOnLongClickListener(new Button.OnLongClickListener(){
+            public boolean onLongClick(View v){
+                popup("Times Played: " + getSharedPreferences(SHARE,0).getString(count,0));
+            }
+        });
         tutPopup("Welcome to Cactus!");
         tutPopup("To get started, first go to settings on the top bar");
     }
