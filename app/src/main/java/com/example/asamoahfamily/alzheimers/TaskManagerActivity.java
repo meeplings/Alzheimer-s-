@@ -52,14 +52,6 @@ public class TaskManagerActivity extends BaseAct {
         Set<String> newNames = mTasks.getStringSet(ALL_BUTS, new HashSet<String>());
         for (String n : newNames)
             newBut(n, false);
-
-        if(table.getChildCount() == 0) {
-            newBut("BREAKFAST",false);
-            newBut("LUNCH",false);
-            newBut("DINNER",false);
-            newBut("VITAMINS",false);
-            //Toast.makeText(this,R.string.loadFailed,Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void createButton(View v){
