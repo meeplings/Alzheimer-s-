@@ -14,44 +14,32 @@ public class Tasks{
 		name = na;
         day=0;
         month = 0;
-        year = 0;
-        hour = 0;
-        minute = 0;
-
+        time = 0;
+        mark = "";
 	}
-
-	protected Tasks(){
-
-	}
+	
 	private int priority;
 	private String name;
 
 
-    private int hour,minute;
-    private int day,month,year;
-
-    public int getYear() {
-        return year;
+    private float hour,minute;
+    private float time;
+    private String mark;
+    
+    public float getTime(){
+    	return time;
     }
-
-    public void setYear(int year) {
-        this.year = year;
+    
+    public void setTime(float time){
+    	this.time = time;
     }
-
-    public int getDay() {
-        return day;
+    
+    public void getMark(){
+    	return mark;
     }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
+    
+    public void setMark(String mark){
+    	this.mark = mark;
     }
 
     public int getHour() {
