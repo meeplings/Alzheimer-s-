@@ -69,7 +69,7 @@ public class StartActivity extends BaseAct {
                         allSettings.getString(aTodo.concat(FREQ), ""), "_"
 
                 );
-                final String date = mDate.nextToken() + "/" + mDate.nextToken() + "/" + mDate.nextToken();
+                final String date = mDate.nextToken() + "  " + mDate.nextToken();
 
                 b.setOnLongClickListener(new Button.OnLongClickListener(){
                     @Override
